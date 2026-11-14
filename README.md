@@ -23,9 +23,10 @@ Sab kuch **offline chalta hai** (ffmpeg + Python), koi paid API nahi.
 | `out/thumbnail-niyam2-A/B/C-1280x720.jpg` | Episode 2 thumbnails (70% kharch / paisa kahan gaya / kharch = tay) |
 | `out/short-2.mp4` | Ep2 Short · 19s vertical |
 | `out/deep-explains-babylon-niyam-3.mp4` | **Episode 3** · 3:41 · 1080p · end screen included |
-| `out/deep-explains-babylon-niyam-3.hi.srt` | Episode 3 Hindi captions (44 cues) |
+| `out/deep-explains-babylon-niyam-3.hi.srt` | Episode 3 Hindi captions (45 cues, sentence-timed) |
 | `out/thumbnail-niyam3-A/B/C-1280x720.jpg` | Episode 3 thumbnails |
 | `out/short-3.mp4` | Ep3 Short · 17.6s vertical |
+| `out/upload-1/2/3.md` | **copy-paste upload sheet** — title, description, tags, pinned, timer |
 | `content/11-episode3-publish-pack.md` | Episode 3 publish kit |
 | `content/10-episode2-publish-pack.md` | Episode 2 ka title, description, tags, pinned comment |
 | `content/08-publish-pack.md` | **title + description + tags + pinned comment + upload checklist** |
@@ -50,7 +51,15 @@ python scripts/build_video.py              # full render  -> out/…mp4  (~6 min
 python scripts/build_video.py --remux      # rebuild only audio mix (15s)
 python scripts/make_thumbnail.py A B        # thumbnails (A = authority, B = pain)
 python scripts/build_short.py               # 21s vertical Short -> out/short-1.mp4
+python scripts/make_links.py --write        # description links (links.json se)
+python scripts/publish.py 3                 # upload sheet -> out/upload-3.md
 python scripts/make_captions.py             # .srt from the same storyboard
+
+# multi-episode
+python scripts/build_video.py --episode video/episode03.py
+python scripts/make_thumbnail.py A B C --episode video/episode03.py
+python scripts/build_short.py --short video/short3.py
+python scripts/make_captions.py --episode video/episode03.py --out out/deep-explains-babylon-niyam-3.hi.srt
 ```
 
 **Script edit karna ho?** Sirf `video/storyboard.py` badlo — narration, captions, on-screen cards
@@ -76,6 +85,8 @@ scripts/render_lib.py     # typography / palette / gradient text (Devanagari-saf
 scripts/make_thumbnail.py # 1280x720 thumbnail template (A/B variants)
 scripts/build_short.py    # vertical Shorts renderer (1080x1920)
 scripts/make_captions.py  # .srt generator (timing from narration audio)
+scripts/make_links.py     # fills Episode links from links.json (no placeholders left)
+scripts/publish.py        # one-page upload sheet per episode
 assets/audio/             # narration clips (1 per scene)
 assets/img/               # AI-generated cinematic stills
 assets/fonts/             # Hind, Mukta (OFL) — Devanagari + Latin
@@ -93,6 +104,9 @@ out/                      # final mp4 + thumbnail + QA stills
   stays crisp and the photo still moves underneath.
 - **Audio:** each narration clip is filtered (high-pass, presence EQ, gentle compression), placed on
   the timeline with `adelay`, mixed with a generated music bed, then `loudnorm I=-14 TP=-1.5` → YouTube-ready.
+- **Caption timing:** captions are either evenly spread over the narration or given explicit
+  `(start, end, text)` tuples measured from the narration's own silences — the same normaliser
+  feeds both the burned-in captions and the `.srt`, so the two can never drift apart.
 - **No copyrighted material:** original script, AI-generated stills, self-generated music. Book is public
   domain (1926), but we do not copy any translated lines. See `content/01-book-review.md` §2.
 
@@ -103,7 +117,7 @@ out/                      # final mp4 + thumbnail + QA stills
 1. **पहले खुद को दो** ← *this episode (+ Short, `out/short-1.mp4`)*
 2. **ख़र्चे काबू में** ← *done: `out/deep-explains-babylon-niyam-2.mp4`*
 3. **पैसा पैसा कमाए** ← *done: `out/deep-explains-babylon-niyam-3.mp4`*
-4. पैसा बचाओ, खो मत दो (fraud / F&O — SEBI data)
+4. पैसा बचाओ, खो मत दो (fraud / F&O — SEBI data) ← *script + stills ready, narration WIP*
 5. कर्ज़ से आज़ादी (Dabasir)
 6. घर: खर्च या निवेश?
 7. बुढ़ापे की कमाई

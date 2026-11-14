@@ -297,6 +297,58 @@ def caption_band(plate: Image.Image, text_lines: list[str], active: int | None =
     return im
 
 
+def caption_timeline(sc: dict, ndur: float) -> list[tuple[str, float, float]]:
+    """Captions for one scene as (text, start, end) in scene-local seconds.
+
+    Two formats supported:
+      captions=[...]                      -> evenly spread across the narration
+      captions=[(start, end, "..."), ...] -> explicit sentence-level timing
+    In both cases the *last* cue is clamped to the narration length, so a caption
+    never floats past the voice into the end of the scene.
+    """
+    raw = sc.get("captions") or []
+    if not raw:
+        return []
+    if isinstance(raw[0], (tuple, list)) and len(raw[0]) == 3:
+        out = [(str(t[2]), float(t[0]), float(t[1])) for t in raw]
+    else:
+        step = ndur / len(raw)
+        out = [(str(t), i * step, (i + 1) * step) for i, t in enumerate(raw)]
+    fixed = []
+    for text, a, b in out:
+        a = max(0.0, min(a, ndur - 0.15))
+        b = max(a + 0.4, min(b, ndur))
+        fixed.append((text, a, b))
+    return fixed
+
+
+def is_timed(sc: dict) -> bool:
+    """True when the scene gives explicit sentence timing for its captions."""
+    raw = sc.get("captions") or []
+    return bool(raw) and isinstance(raw[0], (tuple, list)) and len(raw[0]) == 3
+
+
+def chunk_captions(timeline: list[tuple[str, float, float]], max_lines=2):
+    """Group the (text, start, end) cues into 1-2 line display chunks that share
+    one on-screen window (the second line lights up mid-chunk)."""
+    chunks = []
+    n = len(timeline)
+    for i in range(0, n, max_lines):
+        group = timeline[i:i + max_lines]
+        # A trailing single caption (odd count) shares its window with the pair
+        # before it, so the last line doesn't flash for a sliver of the scene.
+        if len(group) == 1 and chunks and max_lines == 2 \
+                and len(chunks[-1]["lines"]) < 2:
+            chunks[-1] = dict(lines=chunks[-1]["lines"] + [group[0][0]],
+                              start=chunks[-1]["start"], end=group[0][2],
+                              lines_at=chunks[-1]["lines_at"] + [group[0][1]])
+            continue
+        chunks.append(dict(lines=[g[0] for g in group],
+                           start=group[0][1], end=group[-1][2],
+                           lines_at=[g[1] for g in group]))
+    return chunks
+
+
 def fit_caption_chunks(captions: list[str], max_lines=2):
     """Greedy: pack caption strings into at most two display lines."""
     chunks, cur = [], []
@@ -385,15 +437,16 @@ def render_scene(idx: int, sc: dict) -> str:
         overlays.append((0.0, dur + 1.0, png))
         caps = []
     else:
-        caps = fit_caption_chunks(sc["captions"])
-    cap_dur = (ndur / len(caps)) if caps else 0
-    for ci, chunk in enumerate(caps):
-        seg = cap_dur / max(1, len(chunk))
-        for li in range(len(chunk)):
-            start = sc["pad_in"] + ci * cap_dur + li * seg
+        caps = chunk_captions(caption_timeline(sc, ndur),
+                             max_lines=1 if is_timed(sc) else 2)
+    for ci, ch in enumerate(caps):
+        for li, line in enumerate(ch["lines"]):
+            start = sc["pad_in"] + (ch["lines_at"][li] if ch["lines_at"] else ch["start"])
+            end = sc["pad_in"] + (ch["lines_at"][li + 1]
+                                  if li + 1 < len(ch["lines_at"]) else ch["end"])
             png = os.path.join(WORK, f"cap_{idx + 1:02d}_{ci:02d}_{li}.png")
-            caption_band(plate, chunk, active=li).save(png)
-            overlays.append((start, start + seg + 0.001, png))
+            caption_band(plate, ch["lines"], active=li).save(png)
+            overlays.append((start, end + 0.001, png))
 
     for ci, card in enumerate(sc["cards"]):
         start = sc["pad_in"] + card["start"]
@@ -619,8 +672,12 @@ def main():
                 continue
             for ci, card in enumerate(sc["cards"]):
                 overlay = card_layer(plate, card, idx)
-                for k, chunk in enumerate(fit_caption_chunks(sc["captions"])):
-                    img2 = Image.alpha_composite(overlay, caption_band(plate, chunk))
+                narr_st = os.path.join(AUDIO, f"narr_{idx + 1:02d}_{sc['id']}.mp3")
+                nd_st = probe(narr_st) if os.path.exists(narr_st) else 6.0
+                for k, chunk in enumerate(chunk_captions(
+                        caption_timeline(sc, nd_st),
+                        max_lines=1 if is_timed(sc) else 2)):
+                    img2 = Image.alpha_composite(overlay, caption_band(plate, chunk["lines"]))
                     Image.alpha_composite(plate, img2).convert("RGB").save(
                         os.path.join(OUT, "stills", f"{idx + 1:02d}_{sc['id']}_c{ci}_cap{k}.jpg"),
                         quality=88)

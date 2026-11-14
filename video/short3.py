@@ -16,7 +16,7 @@ SHORT = dict(
         dict(t=2.6, dur=4.4, image="assets/img/22_old_clock.png", focus=(0.5, 0.45),
              kicker="सिर्फ़", big="10 साल", sub="का फ़र्क़"),
         dict(t=7.0, dur=4.6, image="assets/img/21_time_chart.png", focus=(0.5, 0.50),
-             kicker="अंत में", big="लाखों", sub="का अंतर"),
+             kicker="अंत में", big="3× से ज़्यादा", sub="का अंतर"),
         dict(t=11.6, dur=5.4, image="assets/img/02_arkad.png", focus=(0.5, 0.32),
              kicker="कंपाउंडिंग", big="शुरू के साल", sub="सबसे कीमती"),
         dict(t=17.0, dur=4.2, image="assets/img/03_gold.png", focus=(0.5, 0.5),

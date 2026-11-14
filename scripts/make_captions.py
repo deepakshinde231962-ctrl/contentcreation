@@ -54,14 +54,14 @@ def main():
         narr = os.path.join(B.AUDIO, f"narr_{idx + 1:02d}_{sc['id']}.mp3")
         ndur = B.probe(narr)
         start = t0 + sc["pad_in"]
-        caps = sc["captions"]
-        step = ndur / len(caps)
-        for k, c in enumerate(caps):
+        # same normaliser the video render uses -> SRT can never drift from the
+        # burned-in captions (evenly spread, or explicit sentence timing)
+        for text, a0, b0 in B.caption_timeline(sc, ndur):
             i += 1
-            a = start + k * step
-            b = start + (k + 1) * step
+            a = start + a0
+            b = start + b0
             # keep a tiny gap so two cues never touch
-            blocks.append(f"{i}\n{ts(a)} --> {ts(max(a + 0.4, b - 0.06))}\n{c}\n")
+            blocks.append(f"{i}\n{ts(a)} --> {ts(max(a + 0.4, b - 0.06))}\n{text}\n")
         t0 += sc["pad_in"] + ndur + sc["pad_out"]
 
     with open(path, "w", encoding="utf-8") as f:

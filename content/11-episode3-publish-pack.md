@@ -5,7 +5,7 @@
 | File | Kya hai |
 |---|---|
 | `out/deep-explains-babylon-niyam-3.mp4` | main video · 3:41 · 1080p · end screen |
-| `out/deep-explains-babylon-niyam-3.hi.srt` | Hindi captions (44 cues) |
+| `out/deep-explains-babylon-niyam-3.hi.srt` | Hindi captions (45 cues, sentence-timed) |
 | `out/thumbnail-niyam3-A-1280x720.jpg` | *"10 साल देर / = लाखों?"* — time-cost |
 | `out/thumbnail-niyam3-B-1280x720.jpg` | *"₹5,000 / से क्या?"* — compounding |
 | `out/thumbnail-niyam3-C-1280x720.jpg` | *"'गारंटीड' / धोखा?"* — risk frame |
@@ -39,7 +39,7 @@ The Richest Man in Babylon (1926) का Niyam 3: बचत को काम प
 इस वीडियो में:
 • Arkad ka teesra niyam + "जो समझते नहीं, उसमें पैसा मत लगाओ"
 • Compounding ki 3 shartein — samay, niyamitta, kam lagat
-• India example: 25 vs 35 vs 40 saal — ₹5,000/mahina
+• India example: 25 vs 35 vs 40 saal — ₹5,000/mahina @ 12% (₹3.2 करोड़ vs ₹94 लाख vs ₹49 लाख)
 • Kahan fail hota hai: "guaranteed" lalach, na samajh, aapada fund ke bina nivesh
 • 2026 version: 4 kadam
 • 4 galtiyan jo har koi karta hai
@@ -50,14 +50,14 @@ The Richest Man in Babylon (1926) का Niyam 3: बचत को काम प
 00:48 Compounding ki 3 shartein
 01:16 India example (25 vs 35 vs 40)
 01:42 Kahan fail hota hai
-02:11 2026 version: 3 kadam
+02:11 2026 version: 4 kadam
 02:32 Sameeksha + badhne do
-02:53 Common galtiyan
+02:52 Common galtiyan
 03:09 Takeaway + next video
-03:29 End screen
+03:28 End screen
 
-▶ Episode 2 (ख़र्चे काबू में): EPISODE_TWO_LINK
-▶ Episode 1 (पहले खुद को दो): EPISODE_ONE_LINK
+▶ Episode 2 (ख़र्चे काबू में): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 1 (पहले खुद को दो): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
 
 📚 Sources
 • George S. Clason, The Richest Man in Babylon (1926) — Niyam 3 & 4, public domain
@@ -101,7 +101,7 @@ Video में कोई fund/scheme recommend नहीं की गई — �
 - [ ] Public, 7–9 PM IST
 - [ ] Playlist: **The Richest Man in Babylon — Hindi** (Episode 3)
 - [ ] Captions: `out/deep-explains-babylon-niyam-3.hi.srt`
-- [ ] End screen: timer **`03:29`**
+- [ ] End screen: timer **`03:28`**
   - Right → **Niyam 4: पैसा बचाओ, खो मत दो**
   - Left → **Niyam 2: ख़र्चे काबू में**
 - [ ] **Episode 2 ka end screen update karo** → right card ab Niyam 3

@@ -107,8 +107,8 @@ VARIANTS_EP3 = {
               kicker="NIYAM 3 · पैसा पैसा कमाए", zoom=1.10, max_lines=1,
               focus=(0.55, 0.50), target=(0.74, 0.45)),
     # B — compounding visual, curiosity
-    "B": dict(src="assets/img/21_time_chart.png", headline="₹5,000", badge="से क्या?",
-              kicker="हर महीने · 35 साल", zoom=1.06, max_lines=1,
+    "B": dict(src="assets/img/21_time_chart.png", headline="₹5,000", badge="= ₹94 लाख?",
+              kicker="हर महीने · 35 साल से", zoom=1.06, max_lines=1,
               focus=(0.50, 0.52), target=(0.72, 0.46)),
     # C — risk / loss frame (the "fine print" hook)
     "C": dict(src="assets/img/23_risk.png", headline="'गारंटीड'", badge="धोखा?",

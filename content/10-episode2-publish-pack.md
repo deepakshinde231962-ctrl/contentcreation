@@ -66,7 +66,7 @@ example, वो 3 जगह जहाँ ये नियम FAIL होता �
 03:01 Takeaway + next video
 03:20 End screen
 
-▶ Episode 1 (पहले खुद को दो): EPISODE_ONE_LINK
+▶ Episode 1 (पहले खुद को दो): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
 ▶ पहले देखें — 30-Day Money Reset Plan (Joseph Murphy, Part 3):
 https://www.youtube.com/watch?v=I97vx1A6qME
 
@@ -115,7 +115,7 @@ Sources: Madrian & Shea, QJE 2001 · Prelec & Simester, Sloan 2001. Video मे
 - [ ] End screen: same coordinates, timer = video length − 12s (`content/07-end-screen.md`)
   - Right card → **Niyam 3** (agle hafte), Left card → **Niyam 1** (Episode 1)
 - [ ] **Episode 1 ke end screen ka right card update karo** → ab Niyam 2
-- [ ] Description me Episode 1 ka link daalo (`EPISODE_ONE_LINK` replace)
+- [x] Description ka Episode 1 link — `scripts/make_links.py --write` se auto (links.json me EP1 ID daalte hi update ho jayega)
 - [ ] Thumbnail A/B test
 - [ ] Not made for kids
 
