@@ -116,6 +116,21 @@ VARIANTS_EP3 = {
               focus=(0.52, 0.45), target=(0.72, 0.42)),
 }
 
+VARIANTS_EP4 = {
+    # A — the loss frame (strongest fear + specificity)
+    "A": dict(src="assets/img/24_scam_shield.png", headline="₹25,000", badge="एक कॉल में?",
+              kicker="NIYAM 4 · पैसा बचाओ", zoom=1.12, max_lines=1,
+              focus=(0.42, 0.50), target=(0.72, 0.45)),
+    # B — the "guaranteed" red flag
+    "B": dict(src="assets/img/25_fraud_call.png", headline="'गारंटीड'", badge="4% महीना?",
+              kicker="48% साल का · सेबी का सवाल", zoom=1.08, max_lines=1,
+              focus=(0.58, 0.50), target=(0.72, 0.44)),
+    # C — the data frame (derivatives)
+    "C": dict(src="assets/img/26_emergency_vault.png", headline="90% लोग", badge="खोते हैं?",
+              kicker="सेबी · डेरिवेटिव डेटा", zoom=1.10, max_lines=1,
+              focus=(0.55, 0.50), target=(0.73, 0.45)),
+}
+
 VARIANTS = {
     # A — authority: series identity, warm audience
     "A": dict(src="assets/img/02_arkad.png", headline="पहले खुद को दो", badge="10%",
@@ -146,6 +161,9 @@ if __name__ == "__main__":
         elif "03" in ep:
             prefix = "niyam3-"
             globals()["VARIANTS"] = VARIANTS_EP3
+        elif "04" in ep:
+            prefix = "niyam4-"
+            globals()["VARIANTS"] = VARIANTS_EP4
         else:
             prefix = ""
     which = [a for a in args if a in VARIANTS] or list(VARIANTS)

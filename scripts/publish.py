@@ -20,8 +20,10 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PACK = {1: "content/08-publish-pack.md",
         2: "content/10-episode2-publish-pack.md",
-        3: "content/11-episode3-publish-pack.md"}
-SLUG = {1: "babylon-niyam-1", 2: "babylon-niyam-2", 3: "babylon-niyam-3"}
+        3: "content/11-episode3-publish-pack.md",
+        4: "content/12-episode4-publish-pack.md"}
+SLUG = {1: "babylon-niyam-1", 2: "babylon-niyam-2", 3: "babylon-niyam-3",
+        4: "babylon-niyam-4"}
 
 
 def ffmpeg_exe() -> str:

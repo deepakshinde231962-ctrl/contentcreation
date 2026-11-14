@@ -4,7 +4,7 @@ Hindi money-book channel ka poora **research → script → voiceover → video 
 Sab kuch **offline chalta hai** (ffmpeg + Python), koi paid API nahi.
 
 **Series:** *The Richest Man in Babylon* (George S. Clason, 1926)
-**Episodes:** 1 — पहले खुद को दो (3:56) · 2 — ख़र्चे काबू में (3:32) · 3 — पैसा पैसा कमाए (3:41)
+**Episodes:** 1 — पहले खुद को दो (3:56) · 2 — ख़र्चे काबू में (3:32) · 3 — पैसा पैसा कमाए (3:41) · 4 — पैसा बचाओ (*WIP*)
 
 ---
 
@@ -27,6 +27,8 @@ Sab kuch **offline chalta hai** (ffmpeg + Python), koi paid API nahi.
 | `out/thumbnail-niyam3-A/B/C-1280x720.jpg` | Episode 3 thumbnails |
 | `out/short-3.mp4` | Ep3 Short · 17.6s vertical |
 | `out/upload-1/2/3.md` | **copy-paste upload sheet** — title, description, tags, pinned, timer |
+| `out/thumbnail-niyam4-A/B/C-1280x720.jpg` | Episode 4 thumbnails (**video WIP**) |
+| `content/12-episode4-publish-pack.md` | Episode 4 publish kit (render pending) |
 | `content/11-episode3-publish-pack.md` | Episode 3 publish kit |
 | `content/10-episode2-publish-pack.md` | Episode 2 ka title, description, tags, pinned comment |
 | `content/08-publish-pack.md` | **title + description + tags + pinned comment + upload checklist** |
@@ -117,7 +119,7 @@ out/                      # final mp4 + thumbnail + QA stills
 1. **पहले खुद को दो** ← *this episode (+ Short, `out/short-1.mp4`)*
 2. **ख़र्चे काबू में** ← *done: `out/deep-explains-babylon-niyam-2.mp4`*
 3. **पैसा पैसा कमाए** ← *done: `out/deep-explains-babylon-niyam-3.mp4`*
-4. पैसा बचाओ, खो मत दो (fraud / F&O — SEBI data) ← *script + stills ready, narration WIP*
+4. **पैसा बचाओ, खो मत दो** ← *script + stills + thumbnails ready; 5/9 narration clips done, baaki agle turn*
 5. कर्ज़ से आज़ादी (Dabasir)
 6. घर: खर्च या निवेश?
 7. बुढ़ापे की कमाई
