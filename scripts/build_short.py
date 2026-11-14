@@ -154,7 +154,7 @@ def main():
                         "-i", ovs[i],
                         "-filter_complex",
                         f"[0:v]scale={int(W*1.35)}:-2,zoompan={expr}:d={frames}:"
-                        f"s={W}x{H}:fps={FPS},format=yuv420p[bg];[bg][1:v]overlay=0:0:format=auto,format=yuv420p[v]",
+                        f"s={W}x{H}:fps={FPS},scale=in_range=full:out_range=tv,format=yuv420p[bg];[bg][1:v]overlay=0:0:format=auto,format=yuv420p[v]",
                         "-map", "[v]", "-t", f"{dur:.3f}", "-r", str(FPS),
                         "-c:v", "libx264", "-preset", "medium", "-crf", "19", out], check=True)
         clips.append(out)
