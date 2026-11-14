@@ -5,7 +5,8 @@
 |---|---|
 | `out/deep-explains-babylon-niyam-1.mp4` | main video · 3:56 · 1080p · end screen included |
 | `out/thumbnail-A-1280x720.jpg` | thumbnail A — *"पहले खुद को दो" + 10%* (authority frame) |
-| `out/thumbnail-B-1280x720.jpg` | thumbnail B — *"सैलरी गई / कहाँ?"* (pain frame → cold audience) |
+| `out/thumbnail-B-1280x720.jpg` | thumbnail B — *"सैलरी गई / कहाँ?"* (pain frame → naye viewers) |
+| `out/thumbnail-C-1280x720.jpg` | thumbnail C — *"10% नियम / फेल?"* (curiosity gap) |
 | `out/short-1.mp4` | 21s Short · 1080×1920 · same voice |
 | `out/deep-explains-babylon-niyam-1.hi.srt` | Hindi captions (upload karo — SEO + accessibility) |
 | `content/07-end-screen.md` | YouTube end-screen element coordinates |
@@ -55,13 +56,13 @@ wala example, और वो 3 जगह जहाँ ये नियम FAIL �
 ⏱ Chapters
 00:00 Hook
 00:23 Niyam kya kehta hai
-00:56 Evidence — kya kaam karta hai
-01:30 India example (₹40,000)
+00:56 Evidence
+01:30 India example
 01:49 Kahan fail hota hai
-02:28 Sudhara hua 2026 version
-02:52 Mahanga karz + skill
-03:09 Common galtiyan
-03:28 Takeaway + next video
+02:28 2026 version
+02:52 Karz + skill
+03:09 Galtiyan
+03:28 Takeaway
 03:44 End screen
 
 ▶ पहले देखें — 30-Day Money Reset Plan (Joseph Murphy, Part 3):

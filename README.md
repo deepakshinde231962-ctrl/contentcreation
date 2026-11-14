@@ -16,6 +16,7 @@ Sab kuch **offline chalta hai** (ffmpeg + Python), koi paid API nahi.
 | `out/deep-explains-babylon-niyam-1.hi.srt` | Hindi captions (YouTube me upload karo) |
 | `out/thumbnail-A-1280x720.jpg` | thumbnail A — authority frame (*पहले खुद को दो*, 10%) |
 | `out/thumbnail-B-1280x720.jpg` | thumbnail B — pain frame (*सैलरी गई / कहाँ?*) |
+| `out/thumbnail-C-1280x720.jpg` | thumbnail C — curiosity frame (*10% नियम / फेल?*) |
 | `out/short-1.mp4` | 21s vertical Short (1080×1920), same voice |
 | `content/08-publish-pack.md` | **title + description + tags + pinned comment + upload checklist** |
 | `content/07-end-screen.md` | end screen ke exact coordinates + Studio steps |
@@ -25,6 +26,7 @@ Sab kuch **offline chalta hai** (ffmpeg + Python), koi paid API nahi.
 | `content/03-series-plan.md` | 8–9 episode plan + publishing rhythm |
 | `content/04-channel-strategy.md` | 90-din growth plan, metrics, policy safety |
 | `content/06-next-script.md` | Episode 2 ka ready script |
+| `content/09-upgrade-log.md` | v1 → v2: kya improve hua aur kyun (retention/audio fixes) |
 
 ---
 

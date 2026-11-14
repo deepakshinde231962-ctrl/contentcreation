@@ -144,13 +144,15 @@ aaj ke India ka ₹40,000 wala example, aur woh 3 jagah jahan ye niyam FAIL hota
 
 ⏱ Chapters
 00:00 Hook
-00:22 Niyam kya kehta hai
-00:55 Evidence — kya ye kaam karta hai
-01:28 India example (₹40,000 salary)
-01:47 Kahan fail hota hai
-02:25 Sudhara hua 2026 version
-03:05 Common galtiyan
-03:23 Takeaway + next video
+00:23 Niyam kya kehta hai
+00:56 Evidence
+01:30 India example
+01:49 Kahan fail hota hai
+02:28 2026 version
+02:52 Karz + skill
+03:09 Galtiyan
+03:28 Takeaway
+03:44 End screen
 
 📚 Sources
 • Madrian & Shea (2001), Quarterly Journal of Economics
