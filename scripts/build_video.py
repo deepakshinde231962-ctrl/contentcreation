@@ -62,16 +62,26 @@ def run(cmd: list[str], quiet=True):
 
 
 def probe(path: str) -> float:
+    """Real duration in seconds.
+
+    Reads ffmpeg's Duration header first. The naive "first time= line" version
+    under-reports ended/muxed files badly (it cost the 12 s end screen once),
+    so Duration is authoritative and time= is only a fallback.
+    """
     out = run([FF, "-hide_banner", "-i", path, "-f", "null", "-"])
     for line in out.splitlines():
-        if "time=" in line and "Duration" not in line:
-            stamp = line.split("time=")[1].split()[0]
-            h, m, s = stamp.split(":")
-            return int(h) * 3600 + int(m) * 60 + float(s)
-    dur = [l for l in out.splitlines() if "Duration:" in l][0]
-    hms = dur.split("Duration:")[1].split(",")[0].strip()
-    h, m, s = hms.split(":")
-    return int(h) * 3600 + int(m) * 60 + float(s)
+        if "Duration:" in line:
+            hms = line.split("Duration:")[1].split(",")[0].strip()
+            h, m, sec = hms.split(":")
+            total = int(h) * 3600 + int(m) * 60 + float(sec)
+            if total > 0:
+                return total
+    times = [l.split("time=")[1].split()[0] for l in out.splitlines()
+             if "time=" in l and "Duration" not in l]
+    if times:
+        h, m, sec = times[-1].split(":")
+        return int(h) * 3600 + int(m) * 60 + float(sec)
+    raise RuntimeError(f"could not probe duration of {path}")
 
 
 # ---------------------------------------------------------------------------
@@ -251,27 +261,32 @@ def endscreen_layer(scene_idx: int) -> Image.Image:
 # ---------------------------------------------------------------------------
 # subtitles: burn-time steady captions (Devanagari already shaped by PIL)
 # ---------------------------------------------------------------------------
-def caption_band(plate: Image.Image, text_lines: list[str]) -> Image.Image:
-    """Transparent overlay: dark band + burned-in caption (RGBA)."""
+def caption_band(plate: Image.Image, text_lines: list[str], active: int | None = None) -> Image.Image:
+    """Transparent overlay: dark band + caption. The `active` line is lit in warm
+    gold, the other dimmed — captions get a karaoke rhythm instead of sitting
+    there unchanged for five seconds."""
     im = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
     band_h = 250
     top = HEIGHT - band_h
     grad = Image.new("L", (1, band_h), 0)
     for y in range(band_h):
-        grad.putpixel((0, y), int(238 * min(1.0, (y / band_h) ** 1.4)))
+        grad.putpixel((0, y), int(240 * min(1.0, (y / band_h) ** 1.4)))
     band = Image.new("RGBA", (WIDTH, band_h), (9, 7, 5, 255))
     band.putalpha(grad.resize((WIDTH, band_h)))
     im.alpha_composite(band, (0, top))
 
     d = ImageDraw.Draw(im, "RGBA")
-    f = R.font("heading", 56)
+    f = R.font("heading", 58)
     while f.size > 36 and max(f.getlength(l) for l in text_lines) > WIDTH - 380:
         f = R.font("heading", f.size - 2)
-    y = top + 78
-    for line in text_lines:
-        d.text((WIDTH // 2, y), line, font=f, fill=(252, 247, 238, 255), anchor="ma",
+    y = top + (74 if len(text_lines) == 1 else 62)
+    for i, line in enumerate(text_lines):
+        is_active = (active is None) or (i == active)
+        fill = (255, 240, 205, 255) if is_active else (206, 194, 176, 205)
+        size = f if is_active else R.font("heading", int(f.size * 0.92))
+        d.text((WIDTH // 2, y), line, font=size, fill=fill, anchor="ma",
                stroke_width=5, stroke_fill=(8, 6, 4, 220))
-        y += int(f.size * 1.30)
+        y += int(f.size * (1.34 if len(text_lines) == 2 else 1.0))
     return im
 
 
@@ -291,6 +306,39 @@ def fit_caption_chunks(captions: list[str], max_lines=2):
 # ---------------------------------------------------------------------------
 # 4. scene render
 # ---------------------------------------------------------------------------
+
+def detect_cuts(audio_path: str, min_seg=3.2, max_cuts=4) -> list[float]:
+    """Sentence pauses in the narration, so the picture can cut to a new framing
+    exactly when the voice breathes (a real editor's punch-in)."""
+    out = run([FF, "-hide_banner", "-i", audio_path, "-af",
+               "silencedetect=noise=-35dB:d=0.28", "-f", "null", "-"])
+    starts = [float(l.split("silence_start:")[1].strip())
+              for l in out.splitlines() if "silence_start:" in l]
+    ends = [float(l.split("silence_end:")[1].split("|")[0].strip())
+            for l in out.splitlines() if "silence_end:" in l]
+    cues = [(a + b) / 2 for a, b in zip(starts[1:], ends) if a > 0.6]
+    picked = []
+    for c in cues:
+        if not picked or c - picked[-1] >= min_seg:
+            picked.append(c)
+    return picked[:max_cuts]
+
+
+def punch_segments(dur: float, cuts: list[float]) -> list[tuple[float, float]]:
+    """Cut points -> (start, end) segments; anything under 2.2 s merges back into
+    the previous segment so the edit never turns choppy."""
+    bounds = [0.0] + sorted({max(1.6, min(dur - 1.6, round(c, 2))) for c in cuts}) + [dur]
+    segs = []
+    for a, b in zip(bounds, bounds[1:]):
+        if b - a < 1e-3:
+            continue
+        if segs and (b - a) < 2.2:
+            segs[-1] = (segs[-1][0], b)
+        else:
+            segs.append((a, b))
+    return segs
+
+
 def motion_expr(motion: str, frames: int):
     if motion == "zoom_in":
         return "z='min(1.0015+0.0016*on,1.16)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
@@ -306,7 +354,7 @@ def motion_expr(motion: str, frames: int):
 def render_scene(idx: int, sc: dict) -> str:
     sid = sc["id"]
     if sc.get("kind") == "endscreen":
-        ndur = sc.get("fixed_dur", 18.0)
+        ndur = sc.get("fixed_dur", 12.0)
         dur = ndur
     else:
         narr = os.path.join(AUDIO, f"narr_{idx + 1:02d}_{sid}.mp3")
@@ -333,11 +381,12 @@ def render_scene(idx: int, sc: dict) -> str:
         caps = fit_caption_chunks(sc["captions"])
     cap_dur = (ndur / len(caps)) if caps else 0
     for ci, chunk in enumerate(caps):
-        start = sc["pad_in"] + ci * cap_dur
-        end = start + cap_dur
-        png = os.path.join(WORK, f"cap_{idx + 1:02d}_{ci:02d}.png")
-        caption_band(plate, chunk).save(png)
-        overlays.append((start, end, png))
+        seg = cap_dur / max(1, len(chunk))
+        for li in range(len(chunk)):
+            start = sc["pad_in"] + ci * cap_dur + li * seg
+            png = os.path.join(WORK, f"cap_{idx + 1:02d}_{ci:02d}_{li}.png")
+            caption_band(plate, chunk, active=li).save(png)
+            overlays.append((start, start + seg + 0.001, png))
 
     for ci, card in enumerate(sc["cards"]):
         start = sc["pad_in"] + card["start"]
@@ -346,12 +395,45 @@ def render_scene(idx: int, sc: dict) -> str:
         card_layer(plate, card, idx).save(png)
         overlays.append((start, end, png))
 
-    # --- base motion pass ---
+    # --- base motion: one clip per punch-in segment, then concat -------------
+    # Alternating framing (wide / 30% tighter + a touch brighter) reads as real
+    # editing instead of one long slide over a still.
     base_mp4 = os.path.join(WORK, f"base_{idx + 1:02d}_{sid}.mp4")
-    run([FF, "-hide_banner", "-loglevel", "error", "-y", "-loop", "1", "-i", plate_path,
-         "-t", f"{dur:.3f}", "-vf",
-         f"scale=2688:-2,zoompan={motion_expr(sc['motion'], frames)}:d={frames}:s={WIDTH}x{HEIGHT}:fps={FPS},"
-         f"format=yuv420p", "-c:v", "libx264", "-preset", "medium", "-crf", "20", base_mp4])
+    if sc.get("kind") == "endscreen":
+        segs = [(0.0, dur)]
+    else:
+        cuts = detect_cuts(os.path.join(AUDIO, f"narr_{idx + 1:02d}_{sid}.mp3"))
+        segs = punch_segments(dur, [c + sc["pad_in"] for c in cuts])
+
+    if len(segs) == 1:
+        run([FF, "-hide_banner", "-loglevel", "error", "-y", "-loop", "1", "-i", plate_path,
+             "-t", f"{dur:.3f}", "-vf",
+             f"scale=2688:-2,zoompan={motion_expr(sc['motion'], frames)}:d={frames}:"
+             f"s={WIDTH}x{HEIGHT}:fps={FPS},format=yuv420p",
+             "-c:v", "libx264", "-preset", "medium", "-crf", "20", base_mp4])
+    else:
+        seg_files = []
+        for si, (a, b) in enumerate(segs):
+            n = max(2, int(round((b - a) * FPS)))
+            tighter = (si % 2 == 1)
+            z0 = 1.30 if tighter else 1.0
+            z1 = z0 + 0.05
+            expr = (f"z='{z0}+({z1 - z0:.4f})*on/{n}':"
+                    f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'")
+            out_seg = os.path.join(WORK, f"seg_{idx + 1:02d}_{si}.mp4")
+            run([FF, "-hide_banner", "-loglevel", "error", "-y", "-loop", "1", "-i", plate_path,
+                 "-t", f"{b - a:.3f}", "-vf",
+                 f"scale=3100:-2,zoompan={expr}:d={n}:s={WIDTH}x{HEIGHT}:fps={FPS},"
+                 f"eq=brightness={0.035 if tighter else -0.012}:"
+                 f"saturation={1.06 if tighter else 0.98},format=yuv420p",
+                 "-c:v", "libx264", "-preset", "medium", "-crf", "20", out_seg])
+            seg_files.append(out_seg)
+        seg_list = os.path.join(WORK, f"seglist_{idx + 1:02d}.txt")
+        with open(seg_list, "w") as f:
+            for sf in seg_files:
+                f.write(f"file '{sf}'\n")
+        run([FF, "-hide_banner", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0",
+             "-i", seg_list, "-c", "copy", base_mp4])
 
     # --- overlay pass ---
     args = [FF, "-hide_banner", "-loglevel", "error", "-y", "-i", base_mp4]
@@ -428,6 +510,28 @@ def synth_music_safe(duration: float, dst: str):
         m = max(0, min(seg_n, n - start))
         out[start:start + m] += thump[:m] * env[:m] * 0.15
         pos += 60.0 / bpm * 2
+
+    # soft frame-drum tick every 4 beats: gives the bed a pulse without fighting
+    # speech
+    seg_n = int(0.18 * sr)
+    tt = np.arange(seg_n) / sr
+    env = np.exp(-tt * 22).astype(np.float32)
+    tick = (np.sin(2 * np.pi * 1180 * tt) * 0.35 +
+            np.sin(2 * np.pi * 1730 * tt) * 0.15).astype(np.float32)
+    pos = 0.0
+    while pos < duration:
+        start = int(pos * sr)
+        m = max(0, min(seg_n, n - start))
+        out[start:start + m] += tick[:m] * env[:m] * 0.10
+        pos += 60.0 / bpm * 4
+
+    # slow riser into the final 12 s (the end-screen hand-off)
+    riser_len = 3.0
+    rs = int(riser_len * sr)
+    if rs < n:
+        tt = np.arange(rs) / sr
+        sweep = np.sin(2 * np.pi * (180 + 520 * tt / riser_len) * tt) * (tt / riser_len) ** 2
+        out[n - rs:] += (sweep * 0.09).astype(np.float32)
 
     # one-pole low-pass via lfilter-free recursion (vectorised approximation)
     b = 0.10
@@ -530,7 +634,7 @@ def mix_final(joined: str, out_rel: str) -> str:
         t0 += sc["pad_in"] + probe(narr) + sc["pad_out"]
     total_dur = t0
 
-    bed = synth_music_safe(total_dur + 1.0, MUSIC)
+    bed = synth_music_safe(total_dur + 2.0, MUSIC)
 
     cmd = [FF, "-hide_banner", "-loglevel", "error", "-y", "-i", joined]
     for narr, _ in delays:
@@ -547,11 +651,18 @@ def mix_final(joined: str, out_rel: str) -> str:
             f"acompressor=threshold=-19dB:ratio=2.6:attack=8:release=180:makeup=2,"
             f"volume=1.0,adelay={ms}|{ms}[n{i}]")
     chains.append("".join(f"[n{i}]" for i in range(n)) +
-                  f"amix=inputs={n}:normalize=0:dropout_transition=0[narr]")
-    chains.append(f"[{n + 1}:a]volume=0.13,atrim=0:{total_dur:.2f},"
-                  f"highpass=f=40[bed]")
-    chains.append("[narr][bed]amix=inputs=2:normalize=0:dropout_transition=0,"
-                  "loudnorm=I=-14:TP=-1.5:LRA=9,"
+                  f"amix=inputs={n}:normalize=0:dropout_transition=0,"
+                  f"asplit=2[voice][key]")
+    chains.append(f"[{n + 1}:a]volume=0.55,atrim=0:{total_dur + 0.5:.2f},highpass=f=40,"
+                  f"lowpass=f=5200,asplit=2[bedraw][bedfloor]")
+    # ducked copy follows the voice; the floor copy is never gated, so music
+    # keeps playing through pauses and behind the end screen
+    chains.append("[bedraw][key]sidechaincompress=threshold=0.010:ratio=6:"
+                  "attack=25:release=380:makeup=1[bedduck]")
+    chains.append("[bedduck][bedfloor]amix=inputs=2:normalize=0:dropout_transition=0,"
+                  "volume=0.55[bed]")
+    chains.append("[voice][bed]amix=inputs=2:normalize=0:dropout_transition=0,"
+                  "loudnorm=I=-14:TP=-1.5:LRA=11,"
                   "aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,"
                   "alimiter=limit=0.94[aout]")
 
@@ -559,7 +670,8 @@ def mix_final(joined: str, out_rel: str) -> str:
     os.makedirs(os.path.dirname(final), exist_ok=True)
     run(cmd + ["-filter_complex", ";".join(chains), "-map", "0:v", "-map", "[aout]",
                "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000",
-               "-movflags", "+faststart", "-shortest", final])
+               "-t", f"{total_dur:.3f}",
+               "-movflags", "+faststart", final])
     print("WROTE", final, f"{total_dur:.1f}s")
     return final
 
