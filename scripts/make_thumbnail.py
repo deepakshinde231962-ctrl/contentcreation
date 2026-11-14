@@ -101,6 +101,21 @@ VARIANTS_EP2 = {
               focus=(0.55, 0.50), target=(0.73, 0.45)),
 }
 
+VARIANTS_EP3 = {
+    # A — the time-cost angle (strongest specific claim)
+    "A": dict(src="assets/img/22_old_clock.png", headline="10 साल देर", badge="= लाखों?",
+              kicker="NIYAM 3 · पैसा पैसा कमाए", zoom=1.10, max_lines=1,
+              focus=(0.55, 0.50), target=(0.74, 0.45)),
+    # B — compounding visual, curiosity
+    "B": dict(src="assets/img/21_time_chart.png", headline="₹5,000", badge="से क्या?",
+              kicker="हर महीने · 35 साल", zoom=1.06, max_lines=1,
+              focus=(0.50, 0.52), target=(0.72, 0.46)),
+    # C — risk / loss frame (the "fine print" hook)
+    "C": dict(src="assets/img/23_risk.png", headline="'गारंटीड'", badge="धोखा?",
+              kicker="NIYAM 3 + 4 · बेबीलोन", zoom=1.08, max_lines=1,
+              focus=(0.52, 0.45), target=(0.72, 0.42)),
+}
+
 VARIANTS = {
     # A — authority: series identity, warm audience
     "A": dict(src="assets/img/02_arkad.png", headline="पहले खुद को दो", badge="10%",
@@ -125,9 +140,14 @@ if __name__ == "__main__":
         i = args.index("--episode")
         ep = args[i + 1]
         del args[i:i + 2]
-        prefix = "niyam2-" if "02" in ep else ""
         if "02" in ep:
+            prefix, _ = "niyam2-", None
             globals()["VARIANTS"] = VARIANTS_EP2
+        elif "03" in ep:
+            prefix = "niyam3-"
+            globals()["VARIANTS"] = VARIANTS_EP3
+        else:
+            prefix = ""
     which = [a for a in args if a in VARIANTS] or list(VARIANTS)
     for key in which:
         v = dict(VARIANTS[key])
