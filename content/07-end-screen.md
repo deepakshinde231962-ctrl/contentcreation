@@ -72,3 +72,14 @@ frame same rahega.
 python scripts/build_video.py --only endscreen     # sirf end screen test
 python scripts/build_video.py                      # full render
 ```
+
+
+---
+
+## Episode 2 (Niyam 2) ke liye
+
+- Video length **3:32** → timer **`03:20`**
+- Right card → **Niyam 3: पैसा पैसा कमाए** (agle hafte)
+- Left card → **Niyam 1: पहले खुद को दो**
+- Coordinates same (ye template do saal tak same rehta hai)
+- **Episode 1 ka end screen bhi update karo**: right card ab Niyam 2 ho

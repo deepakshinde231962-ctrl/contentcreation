@@ -23,7 +23,23 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(ROOT, "video"))
 
 import render_lib as R  # noqa: E402
-from short1 import SHORT  # noqa: E402
+import importlib
+import importlib.util
+import argparse
+import os as _os
+
+_ap = argparse.ArgumentParser()
+_ap.add_argument("--short", default="video/short1.py")
+_ap.add_argument("--out", default="")
+_args = _ap.parse_args()
+_short_path = _args.short if _os.path.isabs(_args.short) else _os.path.join(ROOT, _args.short)
+spec = importlib.util.spec_from_file_location("short_mod", _short_path)
+_mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(_mod)
+SHORT = _mod.SHORT
+BEATS_AT = (getattr(_mod, "SHORT_BEATS_AT", None)
+            or getattr(_mod, "beats_at", None)
+            or SHORT.get("beats_at"))
 
 FF = __import__("build_video").FF
 WORK = os.path.join(ROOT, "out", "_work")
@@ -138,11 +154,11 @@ def main():
     # build each beat as its own clip (length follows the spoken narration),
     # then concat. The last beat is padded with a 0.8s hold so the CTA lands
     # after the voice ends instead of being cut off.
-    from short1 import SHORT_BEATS_AT  # narration-synced timings
+    BEATS = BEATS_AT  # narration-synced beat boundaries
     clips = []
     for i, b in enumerate(SHORT["beats"]):
-        start = SHORT_BEATS_AT[i]
-        end = SHORT_BEATS_AT[i + 1] if i + 1 < len(SHORT_BEATS_AT) else adur + 1.2
+        start = BEATS[i]
+        end = BEATS[i + 1] if i + 1 < len(BEATS) else adur + 1.2
         dur = end - start
         frames = int(round(dur * FPS))
         out = os.path.join(WORK, f"short_beat_{i}.mp4")
@@ -167,7 +183,7 @@ def main():
     subprocess.run([FF, "-hide_banner", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0",
                     "-i", lst, "-c", "copy", joined], check=True)
 
-    final = os.path.join(ROOT, "out/short-1.mp4")
+    final = os.path.join(ROOT, _args.out or f"out/short-{SHORT['id'][-1]}.mp4")
     subprocess.run([FF, "-hide_banner", "-loglevel", "error", "-y", "-i", joined,
                     "-i", audio,
                     "-filter_complex",

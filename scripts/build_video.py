@@ -31,13 +31,20 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "video"))
-from storyboard import (SCENES, BRAND, HANDLE, SERIES, NEXT_EPISODE, PREV_VIDEO,  # noqa: E402
-                        FPS, WIDTH, HEIGHT)
+from storyboard import (SCENES as _EP1_SCENES, BRAND, HANDLE, SERIES,  # noqa: E402
+                        NEXT_EPISODE, PREV_VIDEO, FPS, WIDTH, HEIGHT)
 import render_lib as R  # noqa: E402
+
+# Episode selection: --episode video/episode02.py (or EPISODE_FILE env var).
+# Episode 1 stays the default so old commands keep working.
+SCENES = _EP1_SCENES
+EPISODE_SLUG = "babylon-niyam-1"
+EPISODE_TITLE = "Niyam 1: पहले खुद को दो"
 
 ROOT = R.ROOT
 OUT = os.path.join(ROOT, "out")
 AUDIO = os.path.join(ROOT, "assets", "audio")
+AUDIO_EP = AUDIO  # switched per episode
 MUSIC = os.path.join(ROOT, "assets", "music", "bed.mp3")
 WORK = os.path.join(OUT, "_work")
 
@@ -557,14 +564,39 @@ def synth_music_safe(duration: float, dst: str):
     return dst
 
 
+def load_episode(path: str):
+    """Load an episode module and point the renderer at its audio/art."""
+    global SCENES, SERIES, NEXT_EPISODE, PREV_VIDEO, AUDIO, EPISODE_SLUG, EPISODE_TITLE
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("episode_mod", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    ep = mod.EPISODE
+    SCENES = ep["scenes"]
+    SERIES = ep.get("series", SERIES)
+    NEXT_EPISODE = ep.get("next_episode", NEXT_EPISODE)
+    PREV_VIDEO = ep.get("prev_video", PREV_VIDEO)
+    EPISODE_SLUG = ep.get("slug", EPISODE_SLUG)
+    EPISODE_TITLE = ep.get("title", EPISODE_TITLE)
+    AUDIO = os.path.join(ROOT, "assets", "audio", ep.get("audio_dir", "ep2")) \
+        if ep.get("audio_dir", "ep2") else os.path.join(ROOT, "assets", "audio")
+    print(f"episode: {EPISODE_TITLE}  ({len(SCENES)} scenes, audio: {os.path.relpath(AUDIO, ROOT)})")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stills", action="store_true", help="render QA stills only")
     ap.add_argument("--only", default="", help="comma separated scene ids")
-    ap.add_argument("--out", default="out/deep-explains-babylon-niyam-1.mp4")
+    ap.add_argument("--out", default="")
+    ap.add_argument("--episode", default="", help="episode module, e.g. video/episode02.py")
     ap.add_argument("--remux", action="store_true",
                     help="reuse out/_work/joined.mp4 and only rebuild the audio mix")
     args = ap.parse_args()
+
+    if args.episode:
+        load_episode(os.path.join(ROOT, args.episode) if not os.path.isabs(args.episode)
+                     else args.episode)
+    out_rel = args.out or f"out/deep-explains-{EPISODE_SLUG}.mp4"
 
     os.makedirs(WORK, exist_ok=True)
     only = {s for s in args.only.split(",") if s}
@@ -599,7 +631,7 @@ def main():
     if args.remux:
         if not os.path.exists(joined):
             sys.exit("no joined.mp4 to remux — run a full build first")
-        return mix_final(joined, args.out)
+        return mix_final(joined, out_rel)
 
     rendered, total = [], 0.0
     for idx, sc in enumerate(SCENES):
@@ -619,7 +651,7 @@ def main():
             f.write(f"file '{p}'\n")
     run([FF, "-hide_banner", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst,
          "-c", "copy", joined])
-    return mix_final(joined, args.out)
+    return mix_final(joined, out_rel)
 
 
 def mix_final(joined: str, out_rel: str) -> str:

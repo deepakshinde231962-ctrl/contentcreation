@@ -4,7 +4,7 @@ Hindi money-book channel ka poora **research → script → voiceover → video 
 Sab kuch **offline chalta hai** (ffmpeg + Python), koi paid API nahi.
 
 **Series:** *The Richest Man in Babylon* (George S. Clason, 1926)
-**Episode 1:** Niyam 1 — *पहले खुद को दो* (3:56 incl. end screen, 1080p)
+**Episode 1:** Niyam 1 — *पहले खुद को दो* (3:56) · **Episode 2:** Niyam 2 — *ख़र्चे काबू में* (3:32)
 
 ---
 
@@ -17,7 +17,12 @@ Sab kuch **offline chalta hai** (ffmpeg + Python), koi paid API nahi.
 | `out/thumbnail-A-1280x720.jpg` | thumbnail A — authority frame (*पहले खुद को दो*, 10%) |
 | `out/thumbnail-B-1280x720.jpg` | thumbnail B — pain frame (*सैलरी गई / कहाँ?*) |
 | `out/thumbnail-C-1280x720.jpg` | thumbnail C — curiosity frame (*10% नियम / फेल?*) |
-| `out/short-1.mp4` | 21s vertical Short (1080×1920), same voice |
+| `out/short-1.mp4` | Ep1 Short · 21s vertical (1080×1920) |
+| `out/deep-explains-babylon-niyam-2.mp4` | **Episode 2** · 3:32 · 1080p · end screen included |
+| `out/deep-explains-babylon-niyam-2.hi.srt` | Episode 2 Hindi captions (43 cues) |
+| `out/thumbnail-niyam2-A/B/C-1280x720.jpg` | Episode 2 thumbnails (70% kharch / paisa kahan gaya / kharch = tay) |
+| `out/short-2.mp4` | Ep2 Short · 19s vertical |
+| `content/10-episode2-publish-pack.md` | Episode 2 ka title, description, tags, pinned comment |
 | `content/08-publish-pack.md` | **title + description + tags + pinned comment + upload checklist** |
 | `content/07-end-screen.md` | end screen ke exact coordinates + Studio steps |
 | `content/02-script.md` | script + titles + thumbnail text + Shorts + description |
@@ -56,8 +61,10 @@ python scripts/build_video.py --only hook,rule   # sirf kuch scenes
 ## Structure
 
 ```
-video/storyboard.py       # EPISODE DEFINITION: narration, captions, cards, camera moves, end screen
-video/short1.py           # Short #1 beats + narration-synced timings
+video/storyboard.py       # Ep1 definition (narration, captions, cards, motion, end screen)
+video/episode02.py        # Ep2 definition (same schema — copy this for Ep3)
+video/short1.py           # Short beats + narration-synced timings
+video/short2.py           # Ep2 Short
 scripts/build_video.py    # render pipeline (probe -> plates -> overlays -> motion -> mix)
 scripts/render_lib.py     # typography / palette / gradient text (Devanagari-safe via libraqm)
 scripts/make_thumbnail.py # 1280x720 thumbnail template (A/B variants)
@@ -88,7 +95,7 @@ out/                      # final mp4 + thumbnail + QA stills
 ## Series roadmap
 
 1. **पहले खुद को दो** ← *this episode (+ Short, `out/short-1.mp4`)*
-2. ख़र्चे काबू में (`content/06-next-script.md`, ready)
+2. **ख़र्चे काबू में** ← *done: `out/deep-explains-babylon-niyam-2.mp4`*
 3. पैसा पैसा कमाए (compounding)
 4. पैसा बचाओ, खो मत दो (fraud / F&O — SEBI data)
 5. कर्ज़ से आज़ादी (Dabasir)

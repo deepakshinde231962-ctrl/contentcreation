@@ -16,8 +16,18 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "/video")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from storyboard import SCENES  # noqa: E402
+import argparse
 import build_video as B  # noqa: E402
+from storyboard import SCENES as _EP1  # noqa: E402
+
+_ap = argparse.ArgumentParser()
+_ap.add_argument("--episode", default="")
+_ap.add_argument("--out", default="")
+_a = _ap.parse_args()
+SCENES = _EP1
+if _a.episode:
+    B.load_episode(os.path.join(B.ROOT, _a.episode))
+    SCENES = B.SCENES
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -33,14 +43,15 @@ def ts(sec: float) -> str:
 
 
 def main():
-    path = os.path.join(ROOT, "out/deep-explains-babylon-niyam-1.hi.srt")
+    path = os.path.join(ROOT, _a.out) if _a.out else os.path.join(
+        ROOT, f"out/{B.EPISODE_SLUG}.hi.srt" if _a.episode else "out/deep-explains-babylon-niyam-1.hi.srt")
     t0 = 0.0
     i = 0
     blocks = []
     for idx, sc in enumerate(SCENES):
         if sc.get("kind") == "endscreen":
             continue
-        narr = os.path.join(ROOT, f"assets/audio/narr_{idx + 1:02d}_{sc['id']}.mp3")
+        narr = os.path.join(B.AUDIO, f"narr_{idx + 1:02d}_{sc['id']}.mp3")
         ndur = B.probe(narr)
         start = t0 + sc["pad_in"]
         caps = sc["captions"]

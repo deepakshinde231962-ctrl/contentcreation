@@ -86,6 +86,21 @@ def make(src, headline, badge, kicker, dst, flip=False, zoom=1.02,
     print("wrote", dst)
 
 
+VARIANTS_EP2 = {
+    # A — pain + specificity: the "70% kharche faltu" angle
+    "A": dict(src="assets/img/11_budget.png", headline="70% खर्च", badge="फालतू?", 
+              kicker="NIYAM 2 · ख़र्चे काबू में", zoom=1.10, max_lines=1,
+              focus=(0.52, 0.50), target=(0.74, 0.45)),
+    # B — daily-life frame (subscriptions / UPI)
+    "B": dict(src="assets/img/10_subscriptions.png", headline="पैसा कहाँ गया?", badge="₹72,000",
+              kicker="3 आदतें · 1 साल", zoom=1.14, max_lines=1,
+              focus=(0.50, 0.45), target=(0.72, 0.42)),
+    # C — curiosity: the promise
+    "C": dict(src="assets/img/14_notebook.png", headline="खर्च = तय", badge="किया हुआ?",
+              kicker="NIYAM 2 · 2026 वर्ज़न", zoom=1.08, max_lines=1,
+              focus=(0.55, 0.50), target=(0.73, 0.45)),
+}
+
 VARIANTS = {
     # A — authority: series identity, warm audience
     "A": dict(src="assets/img/02_arkad.png", headline="पहले खुद को दो", badge="10%",
@@ -104,9 +119,18 @@ VARIANTS = {
 if __name__ == "__main__":
     import sys as _s
     os.makedirs(OUT, exist_ok=True)
-    which = [a for a in _s.argv[1:] if a in VARIANTS] or list(VARIANTS)
+    args = _s.argv[1:]
+    prefix = ""
+    if "--episode" in args:
+        i = args.index("--episode")
+        ep = args[i + 1]
+        del args[i:i + 2]
+        prefix = "niyam2-" if "02" in ep else ""
+        if "02" in ep:
+            globals()["VARIANTS"] = VARIANTS_EP2
+    which = [a for a in args if a in VARIANTS] or list(VARIANTS)
     for key in which:
         v = dict(VARIANTS[key])
-        dst = os.path.join(OUT, f"thumbnail-{key}-1280x720.jpg")
+        dst = os.path.join(OUT, f"thumbnail-{prefix}{key}-1280x720.jpg")
         make(os.path.join(ROOT, v.pop("src")), v.pop("headline"), v.pop("badge"),
              v.pop("kicker"), dst, **v)
