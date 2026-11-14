@@ -221,7 +221,7 @@ SCENES = [
         image="assets/img/01_babylon.png",
         motion="zoom_out",
         pad_in=0.3,
-        pad_out=2.2,
+        pad_out=1.2,
         narration=("एक लाइन में — अमीरी कमाई बढ़ने से नहीं, कमाई का हिस्सा पहले अपने पास रखने से शुरू होती है। अगले वीडियो में अर्काड का दूसरा नियम — ख़र्चे काबू में कैसे आएँ। काम की लगी तो सब्सक्राइब कीजिए — हर हफ़्ते एक किताब, आसान हिंदी में।"),
         captions=[
             "अमीरी कमाई बढ़ने से नहीं शुरू होती",
@@ -236,7 +236,29 @@ SCENES = [
                  sub="Subscribe · Deep Explains"),
         ],
     ),
+    # ---------------------------------------------------------------------
+    # YouTube end screen. 18s of clean, dark frame with the exact placeholder
+    # boxes where the channel owner drops YouTube's end-screen elements
+    # (subscribe circle + two video cards). See content/07-end-screen.md.
+    # ---------------------------------------------------------------------
+    dict(
+        id="endscreen",
+        kind="endscreen",
+        image="assets/img/01_babylon.png",
+        motion="zoom_out",
+        pad_in=0.0,
+        pad_out=0.0,
+        fixed_dur=12.0,
+        narration="",
+        captions=[],
+        cards=[],
+    ),
 ]
 
 BRAND = "Deep Explains"
+HANDLE = "@DeepExplainsOfficial"
 SERIES = "The Richest Man in Babylon"
+
+# End-screen targets (URLs from the channel's own public feed)
+NEXT_EPISODE = dict(kicker="NEXT · EPISODE 2", title="Niyam 2: ख़र्चे काबू में", meta="~4 min · Hindi")
+PREV_VIDEO = dict(kicker="पहले देखें", title="30-Day Money Reset Plan", meta="Joseph Murphy · Part 3")

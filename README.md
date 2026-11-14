@@ -4,7 +4,7 @@ Hindi money-book channel ka poora **research → script → voiceover → video 
 Sab kuch **offline chalta hai** (ffmpeg + Python), koi paid API nahi.
 
 **Series:** *The Richest Man in Babylon* (George S. Clason, 1926)
-**Episode 1:** Niyam 1 — *पहले खुद को दो* (3:45, 1080p)
+**Episode 1:** Niyam 1 — *पहले खुद को दो* (3:56 incl. end screen, 1080p)
 
 ---
 
@@ -12,9 +12,14 @@ Sab kuch **offline chalta hai** (ffmpeg + Python), koi paid API nahi.
 
 | File | Kya hai |
 |---|---|
-| `out/deep-explains-babylon-niyam-1.mp4` | **final video** (1920×1080, 25 fps, AAC 48 kHz stereo, −14 LUFS) |
-| `out/thumbnail-1280x720.jpg` | thumbnail (fixed series template) |
-| `content/02-script.md` | script + 3 titles + thumbnail text + 30s Shorts + description + tags |
+| `out/deep-explains-babylon-niyam-1.mp4` | **final video** — 3:56, 1080p25, AAC 48 kHz stereo, −14 LUFS, **12s end screen included** |
+| `out/deep-explains-babylon-niyam-1.hi.srt` | Hindi captions (YouTube me upload karo) |
+| `out/thumbnail-A-1280x720.jpg` | thumbnail A — authority frame (*पहले खुद को दो*, 10%) |
+| `out/thumbnail-B-1280x720.jpg` | thumbnail B — pain frame (*सैलरी गई / कहाँ?*) |
+| `out/short-1.mp4` | 21s vertical Short (1080×1920), same voice |
+| `content/08-publish-pack.md` | **title + description + tags + pinned comment + upload checklist** |
+| `content/07-end-screen.md` | end screen ke exact coordinates + Studio steps |
+| `content/02-script.md` | script + titles + thumbnail text + Shorts + description |
 | `content/01-book-review.md` | book ka scientific review, kahan fail hota hai, 2026 upgrades |
 | `content/05-fact-check.md` | har claim ka source / `[CHECK]` status |
 | `content/03-series-plan.md` | 8–9 episode plan + publishing rhythm |
@@ -31,7 +36,9 @@ pip install pillow numpy imageio-ffmpeg scipy       # once
 python scripts/build_video.py --stills     # fast preview frames -> out/stills/
 python scripts/build_video.py              # full render  -> out/…mp4  (~6 min)
 python scripts/build_video.py --remux      # rebuild only audio mix (15s)
-python scripts/make_thumbnail.py           # thumbnail
+python scripts/make_thumbnail.py A B        # thumbnails (A = authority, B = pain)
+python scripts/build_short.py               # 21s vertical Short -> out/short-1.mp4
+python scripts/make_captions.py             # .srt from the same storyboard
 ```
 
 **Script edit karna ho?** Sirf `video/storyboard.py` badlo — narration, captions, on-screen cards
@@ -47,10 +54,13 @@ python scripts/build_video.py --only hook,rule   # sirf kuch scenes
 ## Structure
 
 ```
-video/storyboard.py       # EPISODE DEFINITION: narration, captions, cards, camera moves
+video/storyboard.py       # EPISODE DEFINITION: narration, captions, cards, camera moves, end screen
+video/short1.py           # Short #1 beats + narration-synced timings
 scripts/build_video.py    # render pipeline (probe -> plates -> overlays -> motion -> mix)
 scripts/render_lib.py     # typography / palette / gradient text (Devanagari-safe via libraqm)
-scripts/make_thumbnail.py # 1280x720 thumbnail template
+scripts/make_thumbnail.py # 1280x720 thumbnail template (A/B variants)
+scripts/build_short.py    # vertical Shorts renderer (1080x1920)
+scripts/make_captions.py  # .srt generator (timing from narration audio)
 assets/audio/             # narration clips (1 per scene)
 assets/img/               # AI-generated cinematic stills
 assets/fonts/             # Hind, Mukta (OFL) — Devanagari + Latin
@@ -75,7 +85,7 @@ out/                      # final mp4 + thumbnail + QA stills
 
 ## Series roadmap
 
-1. **पहले खुद को दो** ← *this episode*
+1. **पहले खुद को दो** ← *this episode (+ Short, `out/short-1.mp4`)*
 2. ख़र्चे काबू में (`content/06-next-script.md`, ready)
 3. पैसा पैसा कमाए (compounding)
 4. पैसा बचाओ, खो मत दो (fraud / F&O — SEBI data)

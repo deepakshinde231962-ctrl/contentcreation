@@ -31,7 +31,8 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "video"))
-from storyboard import SCENES, BRAND, SERIES, FPS, WIDTH, HEIGHT  # noqa: E402
+from storyboard import (SCENES, BRAND, HANDLE, SERIES, NEXT_EPISODE, PREV_VIDEO,  # noqa: E402
+                        FPS, WIDTH, HEIGHT)
 import render_lib as R  # noqa: E402
 
 ROOT = R.ROOT
@@ -76,7 +77,7 @@ def probe(path: str) -> float:
 # ---------------------------------------------------------------------------
 # 2. plate: photo -> graded 1920x1080 base
 # ---------------------------------------------------------------------------
-def build_plate(src: str, dst: str, scrim="left", grade=0.30):
+def build_plate(src: str, dst: str, scrim="left", grade=0.30, dark=0.0, blur=0.0):
     img = Image.open(src).convert("RGB")
     # cover-crop
     sw, sh = img.size
@@ -85,6 +86,8 @@ def build_plate(src: str, dst: str, scrim="left", grade=0.30):
     left = (img.width - WIDTH) // 2
     top = (img.height - HEIGHT) // 2
     img = img.crop((left, top, left + WIDTH, top + HEIGHT))
+    if blur:
+        img = img.filter(ImageFilter.GaussianBlur(blur))
     img = R.vignette(img, amount=110).convert("RGB")
 
     # cinematic grade: pull saturation a touch, warm the highlights, lift teal shadows
@@ -102,6 +105,10 @@ def build_plate(src: str, dst: str, scrim="left", grade=0.30):
         base = Image.alpha_composite(base, R.vertical_scrim((WIDTH, HEIGHT), side=scrim, strength=225))
     base = Image.alpha_composite(base, R.vertical_scrim((WIDTH, HEIGHT), side="bottom", strength=170, power=2.4))
     base = Image.alpha_composite(base, R.grain((WIDTH, HEIGHT)))
+    if dark:
+        flat = Image.new("RGBA", (WIDTH, HEIGHT), R.INK + (255,))
+        flat.putalpha(int(255 * dark))
+        base = Image.alpha_composite(base, flat)
     base.convert("RGB").save(dst, quality=95)
     return dst
 
@@ -184,6 +191,63 @@ def card_layer(plate: Image.Image, card: dict, scene_idx: int) -> Image.Image:
     return out
 
 
+
+# ---------------------------------------------------------------------------
+# end screen: exact placeholder zones for YouTube's own elements
+#   • subscribe circle   -> centre x 1490, y 470, r 120   (2380,940 diameter 240)
+#   • video card left    -> (560, 700, 1160, 990)
+#   • video card right   -> (1840, 700, 2440, 990)
+#     (coords in the 2560-wide editor are halved for 1080p: see docs)
+# ---------------------------------------------------------------------------
+SUB_CIRCLE = (1490, 470, 120)            # cx, cy, r
+CARD_L = (222, 690, 830, 985)            # x0, y0, x1, y1
+CARD_R = (1090, 690, 1698, 985)
+
+
+def endscreen_layer(scene_idx: int) -> Image.Image:
+    im = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im, "RGBA")
+
+    # left headline block
+    x = 148
+    d.text((x, 196), SERIES.upper(), font=R.font("semi", 26), fill=R.GOLD[:3] + (230,))
+    d.rectangle([x, 240, x + 64, 244], fill=R.GOLD[:3] + (255,))
+    d.text((x, 286), "आगे क्या देखें?", font=R.font("display", 84), fill=R.CREAM[:3] + (250,))
+    d.text((x, 402), "दो वीडियो, एक ही सीरीज़ — नीचे से चुनिए",
+           font=R.font("body", 38), fill=R.CREAM_DIM[:3] + (235,))
+
+    # subscribe circle placeholder
+    cx, cy, r = SUB_CIRCLE
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=R.GOLD[:3] + (110,), width=4)
+    d.text((cx, cy - r - 46), "SUBSCRIBE", font=R.font("semi", 28),
+           fill=R.GOLD[:3] + (215,), anchor="mm")
+    d.text((cx, cy + r + 34), "यहाँ YouTube का subscribe button रखें",
+           font=R.font("body", 24), fill=R.CREAM_DIM[:3] + (170,), anchor="mm")
+
+    # two card placeholders
+    for (box, data) in ((CARD_L, PREV_VIDEO), (CARD_R, NEXT_EPISODE)):
+        x0, y0, x1, y1 = box
+        d.rounded_rectangle([x0, y0, x1, y1], radius=14, outline=R.GOLD[:3] + (85,), width=3,
+                            fill=(10, 8, 6, 120))
+        d.text((x0 + 34, y0 + 30), data["kicker"], font=R.font("semi", 24),
+               fill=R.GOLD[:3] + (225,))
+        f = R.font("heading", 40)
+        lines = R.wrap(data["title"], f, x1 - x0 - 68)
+        yy = y0 + 78
+        for ln in lines[:2]:
+            d.text((x0 + 34, yy), ln, font=f, fill=R.CREAM[:3] + (245,))
+            yy += 54
+        d.text((x0 + 34, y1 - 56), data["meta"], font=R.font("body", 26),
+               fill=R.CREAM_DIM[:3] + (200,))
+
+    # bottom strip
+    d.line([(148, 1030), (WIDTH - 148, 1030)], fill=R.CREAM[:3] + (30,), width=1)
+    d.text((148, 1044), "हर हफ़्ते एक किताब, आसान हिंदी में", font=R.font("body", 26),
+           fill=R.CREAM_DIM[:3] + (185,))
+    d.text((WIDTH - 148, 1044), HANDLE, font=R.font("semi", 26), fill=R.GOLD[:3] + (200,), anchor="ra")
+    return im
+
+
 # ---------------------------------------------------------------------------
 # subtitles: burn-time steady captions (Devanagari already shaped by PIL)
 # ---------------------------------------------------------------------------
@@ -241,19 +305,33 @@ def motion_expr(motion: str, frames: int):
 
 def render_scene(idx: int, sc: dict) -> str:
     sid = sc["id"]
-    narr = os.path.join(AUDIO, f"narr_{idx + 1:02d}_{sid}.mp3")
-    ndur = probe(narr)
-    dur = sc["pad_in"] + ndur + sc["pad_out"]
+    if sc.get("kind") == "endscreen":
+        ndur = sc.get("fixed_dur", 18.0)
+        dur = ndur
+    else:
+        narr = os.path.join(AUDIO, f"narr_{idx + 1:02d}_{sid}.mp3")
+        ndur = probe(narr)
+        dur = sc["pad_in"] + ndur + sc["pad_out"]
     frames = int(round(dur * FPS))
 
     plate_path = os.path.join(WORK, f"plate_{idx + 1:02d}_{sid}.png")
-    build_plate(os.path.join(ROOT, sc["image"]), plate_path, scrim="left")
+    if sc.get("kind") == "endscreen":
+        build_plate(os.path.join(ROOT, sc["image"]), plate_path, scrim="none",
+                    dark=0.66, blur=3.0)
+    else:
+        build_plate(os.path.join(ROOT, sc["image"]), plate_path, scrim="left")
     plate = Image.open(plate_path).convert("RGBA")
 
     # --- pre-render every distinct overlay state to PNG ---
-    caps = fit_caption_chunks(sc["captions"])
-    cap_dur = (ndur) / len(caps)
     overlays = []  # (start_sec, end_sec, png)
+    if sc.get("kind") == "endscreen":
+        png = os.path.join(WORK, "endscreen.png")
+        endscreen_layer(idx).save(png)
+        overlays.append((0.0, dur + 1.0, png))
+        caps = []
+    else:
+        caps = fit_caption_chunks(sc["captions"])
+    cap_dur = (ndur / len(caps)) if caps else 0
     for ci, chunk in enumerate(caps):
         start = sc["pad_in"] + ci * cap_dur
         end = start + cap_dur
@@ -393,8 +471,16 @@ def main():
             if only and sc["id"] not in only:
                 continue
             plate_path = os.path.join(WORK, f"plate_{idx + 1:02d}_{sc['id']}.png")
-            build_plate(os.path.join(ROOT, sc["image"]), plate_path)
+            build_plate(os.path.join(ROOT, sc["image"]), plate_path,
+                        scrim="none" if sc.get("kind") == "endscreen" else "left",
+                        dark=0.66 if sc.get("kind") == "endscreen" else 0.0,
+                        blur=3.0 if sc.get("kind") == "endscreen" else 0.0)
             plate = Image.open(plate_path).convert("RGBA")
+            if sc.get("kind") == "endscreen":
+                Image.alpha_composite(plate, endscreen_layer(idx)).convert("RGB").save(
+                    os.path.join(OUT, "stills", f"{idx + 1:02d}_endscreen.jpg"), quality=88)
+                print("still ok endscreen")
+                continue
             for ci, card in enumerate(sc["cards"]):
                 overlay = card_layer(plate, card, idx)
                 for k, chunk in enumerate(fit_caption_chunks(sc["captions"])):
@@ -417,8 +503,8 @@ def main():
             continue
         path, ndur, _ = render_scene(idx, sc)
         rendered.append(path)
-        total += sc["pad_in"] + ndur + sc["pad_out"]
-        print(f"scene {idx + 1}/{len(SCENES)} {sc['id']:9s} {ndur:6.2f}s")
+        total += ndur if sc.get("kind") == "endscreen" else sc["pad_in"] + ndur + sc["pad_out"]
+        print(f"scene {idx + 1}/{len(SCENES)} {sc['id']:10s} {ndur:6.2f}s")
     if only:
         return
 
@@ -436,6 +522,9 @@ def mix_final(joined: str, out_rel: str) -> str:
     """Narration timeline + synthesised bed -> broadcast-ish stereo mix."""
     delays, t0, total_dur = [], 0.0, 0.0
     for idx, sc in enumerate(SCENES):
+        if sc.get("kind") == "endscreen":
+            t0 += sc.get("fixed_dur", 18.0)
+            continue
         narr = os.path.join(AUDIO, f"narr_{idx + 1:02d}_{sc['id']}.mp3")
         delays.append((narr, t0 + sc["pad_in"]))
         t0 += sc["pad_in"] + probe(narr) + sc["pad_out"]

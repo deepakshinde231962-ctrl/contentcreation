@@ -85,9 +85,22 @@ def make(src, headline, badge, kicker, dst, flip=False, zoom=1.02,
     print("wrote", dst)
 
 
+VARIANTS = {
+    # A — the "you do the right thing" frame (default)
+    "A": dict(src="assets/img/02_arkad.png", headline="पहले खुद को दो", badge="10%",
+              kicker="THE RICHEST MAN IN BABYLON · 1926", zoom=1.02,
+              focus=(0.46, 0.34), target=(0.74, 0.42)),
+    # B — the pain frame: salary disappearing (works on cold audiences)
+    "B": dict(src="assets/img/04_india.png", headline="सैलरी गई", badge="कहाँ?", kicker="₹40,000 सैलरी · 2026", zoom=1.16,
+              focus=(0.52, 0.40), target=(0.72, 0.40)),
+}
+
 if __name__ == "__main__":
+    import sys as _s
     os.makedirs(OUT, exist_ok=True)
-    make(os.path.join(ROOT, "assets/img/02_arkad.png"),
-         "पहले खुद को दो", "10%", "THE RICHEST MAN IN BABYLON · 1926",
-         os.path.join(OUT, "thumbnail-1280x720.jpg"), zoom=1.02,
-         focus=(0.46, 0.34), target=(0.74, 0.42))
+    which = [a for a in _s.argv[1:] if a in VARIANTS] or list(VARIANTS)
+    for key in which:
+        v = dict(VARIANTS[key])
+        dst = os.path.join(OUT, f"thumbnail-{key}-1280x720.jpg")
+        make(os.path.join(ROOT, v.pop("src")), v.pop("headline"), v.pop("badge"),
+             v.pop("kicker"), dst, **v)

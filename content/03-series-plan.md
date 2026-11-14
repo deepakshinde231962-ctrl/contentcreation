@@ -9,7 +9,7 @@ Har episode ka structure (fixed):
 
 | # | Episode | Core idea | Hook (10s) | India example | Shorts |
 |---|---|---|---|---|---|
-| 1 | **पहले खुद को दो** (published/ready) | Kamai ka 10% pehle | "Salary aayi aur teesre hafte khaali" | ₹40,000 salary → ₹4,000 auto-debit | 1 (ready) |
+| 1 | **पहले खुद को दो** (published/ready) | Kamai ka 10% pehle | "Salary aayi aur teesre hafte khaali" | ₹40,000 salary → ₹4,000 auto-debit | 1 (ready, `out/short-1.mp4`) |
 | 2 | **खर्चे काबू में** | Needs vs wants, "90% me jiyo" | "70% kharche 'zaroori' lagte hain, par hain nahi" | Kirana + subscriptions audit | 1 |
 | 3 | **पैसा पैसा कमाए** | Compounding | "₹500 mehine se kya hoga?" | 20 saal ka SIP math (no product) | 2 |
 | 4 | **पैसा बचाओ, kho mat do** | Guard from loss | "Guaranteed 3% monthly" = scam | Cyber-fraud + F&O data (SEBI) | 2 |
@@ -53,3 +53,23 @@ Shorts ko long video se hi cut karo (retention data compare hoga).
 
 > Yani: un repos ke **ideas** yahan ek chhote, dependency-free pipeline me implement hue hain jo
 > **laptop par offline** chalta hai (ffmpeg + PIL), kisi paid API ke bina.
+
+
+---
+
+## Channel ke apne format ke saath alignment (important)
+
+Aapke maujooda 4 videos ka pattern (public feed se):
+
+| Pehlu | Aapka pattern | Is episode me kya kiya |
+|---|---|---|
+| Title | `सवाल? | Joseph Murphy Hindi` (Roman/Sanskrit mix, question) | `सैलरी का 10% क्यों गायब हो जाता है?` — wahi question format, Roman suffix `| Richest Man in Babylon Hindi` |
+| Description | Intro line → bullet list "इस वीडियो में" → links to previous parts → disclaimer → comment CTA | Same skeleton, plus timestamps + sources (trust) |
+| Disclaimer | "यह personalised investment/credit advice नहीं है…" | Same tone, same place (before CTA) |
+| Comment CTA | "आज आप क्या शुरू करेंगे…? कमेंट में बताएं" | "आपकी salary का कितना % agle din auto-transfer hota hai? Number likh do" |
+| Series chaining | Part 1/2/3 ke links description me | Video 1 me Part 3 ka link + end screen card |
+| End screen | (abhi tak nahi) | 12s dedicated frame, exact placeholder zones (`content/07-end-screen.md`) |
+
+**Ek suggestion:** aapke purane titles me book ka naam Roman me hai (`Joseph Murphy Hindi`), isliye
+is episode ka title variant 4 (`Richest Man in Babylon Hindi`) search ke liye zyada kaam karega.
+A/B test karte waqt wahi use karein.
