@@ -1,0 +1,8 @@
+# rendered working files (large, reproducible)
+out/_work/
+out/stills/
+__pycache__/
+*.pyc
+.DS_Store
+
+# keep the deliverables: final mp4, thumbnail, stills-qa only if small
