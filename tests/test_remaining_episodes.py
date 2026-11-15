@@ -1,8 +1,4 @@
-"""Accuracy, editorial safety and actual upload-file checks for episodes 6–8.
-
-Episode 9's source text and book mapping are checked here; its media tests
-will be included when its separate finale narration and render are delivered.
-"""
+"""Accuracy, editorial safety and actual upload-file checks for episodes 6–9."""
 from __future__ import annotations
 
 import importlib.util
@@ -22,9 +18,9 @@ from remaining_storyboards import caption_texts  # noqa: E402
 from build_remaining_docs import TITLES, THUMB_WORDS  # noqa: E402
 from publish import probe_dur, ffmpeg_exe  # noqa: E402
 
-# An incremental build can validate just the completed episode via
-# DEEP_TEST_FINISHED=6; the default checks every finished episode in this batch.
-FINISHED = tuple(map(int, os.environ.get('DEEP_TEST_FINISHED', '6,7,8').split(',')))
+# An incremental build can validate one episode via DEEP_TEST_FINISHED=9;
+# the default checks all four finished episodes in this batch.
+FINISHED = tuple(map(int, os.environ.get('DEEP_TEST_FINISHED', '6,7,8,9').split(',')))
 
 
 class RemainingEpisodesTests(unittest.TestCase):
@@ -55,8 +51,21 @@ class RemainingEpisodesTests(unittest.TestCase):
         self.assertIn('तीसरा:', ep9)
         self.assertIn('चौथा नियम', ep9)
         self.assertIn('पांचवाँ:', ep9)
+        self.assertIn('/Chapter_5', METADATA[9]['source'])
+        self.assertNotIn('30_dabasir', str(METADATA[9]['images']))
+        self.assertIn('बिना किसी रिटर्न के', NARRATIONS[9]['limits'])
         for n in range(6, 10):
             self.assertNotIn('रातों रात अमीर हो सकते', ' '.join(NARRATIONS[n].values()))
+
+    def test_finale_cards_match_finale_math_not_earlier_episodes(self):
+        from remaining_storyboards import CARDS
+        india = CARDS[9]['limits']
+        self.assertEqual([card['big'] for card in india], ['₹3,000 अलग', '₹36,000'])
+        self.assertIn('₹30,000', india[0]['sub'])
+        self.assertIn('बिना रिटर्न', india[1]['kicker'])
+        cards = str(CARDS[9])
+        for old in ('₹1.29 लाख', '₹60,000 साल', '₹34,713 EMI'):
+            self.assertNotIn(old, cards)
 
     def test_examples_reproduce_narration_without_fake_statistics(self):
         p = 4_000_000

@@ -17,7 +17,7 @@ need channel access; the baked end-screen canvas by itself is not clickable.
 | 6 | घर: ख़र्च या निवेश? | 3:46.40 · `out/deep-explains-babylon-niyam-6.mp4` | `out/short-6.mp4` · 29.3s | `out/deep-explains-babylon-niyam-6.hi.srt` · 65 cues | `out/thumbnail-niyam6-{A,B,C}-1280x720.jpg` |
 | 7 | बुढ़ापे की कमाई | 3:55.88 · `out/deep-explains-babylon-niyam-7.mp4` | `out/short-7.mp4` · 26.5s | `out/deep-explains-babylon-niyam-7.hi.srt` · 74 cues | `out/thumbnail-niyam7-{A,B,C}-1280x720.jpg` |
 | 8 | खुद को बड़ा बनाओ | 3:43.40 · `out/deep-explains-babylon-niyam-8.mp4` | `out/short-8.mp4` · 26.3s | `out/deep-explains-babylon-niyam-8.hi.srt` · 69 cues | `out/thumbnail-niyam8-{A,B,C}-1280x720.jpg` |
-| 9 | Five Laws of Gold · finale | **Script done; full video pending narration** | pending | pending | art prepared |
+| 9 | Five Laws of Gold · finale | 3:58.96 · `out/deep-explains-babylon-niyam-9.mp4` | `out/short-9.mp4` · 28.7s | `out/deep-explains-babylon-niyam-9.hi.srt` · 73 cues | `out/thumbnail-niyam9-{A,B,C}-1280x720.jpg` |
 
 All long videos: 1920×1080/25 fps, mixed AAC 48 kHz audio, 12-second baked end-screen canvas.
 Shorts: 1080×1920/30 fps with the same palette and original narrations.
@@ -32,13 +32,12 @@ Shorts: 1080×1920/30 fps with the same palette and original narrations.
   Earlier episodes: `content/08-publish-pack.md`, `content/10-episode2-publish-pack.md`,
   `content/11-episode3-publish-pack.md`, `content/12-episode4-publish-pack.md`.
 - `content/15-episode6-script.md`, `content/17-episode7-script.md`,
-  `content/19-episode8-script.md` — complete six-part scripts. `video/remaining_content.py`
-  stores exact spoken words for Episodes 6–9. The finale's script is
-  `content/21-episode9-script.md`; its video is not complete yet.
+  `content/19-episode8-script.md`, `content/21-episode9-script.md` — complete
+  six-part scripts. `video/remaining_content.py` stores exact spoken words.
 - `content/16-episode6-publish-pack.md`, `content/18-episode7-publish-pack.md`,
-  `content/20-episode8-publish-pack.md` — title options, sources,
-  chapters, disclaimer, Short idea and end-screen instructions for Episodes 6–8.
-- `out/upload-{1,2,3,4,5,6,7,8}.md` — one-page paste-ready sheet per finished episode
+  `content/20-episode8-publish-pack.md`, `content/22-episode9-publish-pack.md`
+  — title options, sources, chapters, disclaimers, Short ideas and end-screen instructions.
+- `out/upload-{1,2,3,4,5,6,7,8,9}.md` — one-page paste-ready sheet per finished episode
   (title, description, tags, pinned comment, captions and exact end-screen timer).
 - `content/07-end-screen.md` — clickable element positions and Studio setup.
 - `content/03-series-plan.md`, `content/04-channel-strategy.md` — rollout, measurement,
@@ -64,7 +63,7 @@ python3 scripts/make_thumbnail.py A B C --episode video/episode05.py
 python3 scripts/build_short.py --short video/short5.py
 python3 scripts/publish.py 5
 
-# Episodes 6–8 (replace 6 with 7 or 8; committed narration MP3s are enough).
+# Episodes 6–9 (replace 6 with 7, 8 or 9; committed narration MP3s are enough).
 # Compact H.264 keeps the 1080p deliverable small enough for Git.
 DEEP_BUILD_PRESET=veryfast DEEP_COMPACT=1 python3 scripts/build_video.py --episode video/episode06.py
 python3 scripts/make_captions.py --episode video/episode06.py \
@@ -115,6 +114,6 @@ Sources and disclaimers are in `content/14-episode5-publish-pack.md`.
 6. घर: ख़र्च या निवेश? ✅ · 3:46.40 · Short 29.3s · 65-cue SRT · 3 thumbnails
 7. बुढ़ापे की कमाई ✅ · 3:55.88 · Short 26.5s · 74-cue SRT · 3 thumbnails
 8. ख़ुद को बड़ा बनाओ ✅ · 3:43.40 · Short 26.3s · 69-cue SRT · 3 thumbnails
-9. Five Laws of Gold (finale) · 572-word script and first four scene recordings done; video pending
+9. Five Laws of Gold (finale) ✅ · 3:58.96 · Short 28.7s · 73-cue SRT · 3 thumbnails
 
 © Deep Explains · educational content, not personalised financial advice.
