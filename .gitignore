@@ -1,0 +1,9 @@
+# rendered working files (large, reproducible)
+out/_work/
+out/stills/
+__pycache__/
+*.pyc
+.DS_Store
+
+# local YouTube IDs (see links.example.json)
+links.json
