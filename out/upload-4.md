@@ -1,6 +1,6 @@
 # Upload sheet — Episode 4
 
-**File:** `out/deep-explains-babylon-niyam-4.mp4`
+**File:** `out/deep-explains-babylon-niyam-4.mp4`  ·  3:38.00
 
 ## Title (copy)
 ```
@@ -21,7 +21,16 @@
 • 4 galtiyan jo har koi karta hai
 
 ⏱ Chapters
-(full render ke baad auto: `python3 scripts/publish.py 4`)
+00:00 Hook
+00:22 Niyam 4 kya kehta hai
+00:43 Data: 90%+ log kyun kho jaate hain
+01:13 India example (₹50,000 · "4% mahina")
+01:43 Kahan kamzor padta hai
+02:13 2026 version: 4 kadam
+02:28 Teen sawaal + saal ki sameeksha
+02:51 Common galtiyan
+03:07 Takeaway + next video
+03:26 End screen
 
 ▶ Episode 3 (पैसा पैसा कमाए): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
 ▶ Episode 2 (ख़र्चे काबू में): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
@@ -58,7 +67,7 @@ Video में कोई fund/scheme recommend नहीं की गई। SE
 ## Studio settings
 - Captions: `out/deep-explains-babylon-niyam-4.hi.srt` → Hindi
 - Thumbnail: `out/thumbnail-niyam4-A-1280x720.jpg` (A/B: test B)
-- End screen timer: **?** (video length − 12s)
+- End screen timer: **03:26** (video length − 12s)
 - Playlist: The Richest Man in Babylon — Hindi
 - Visibility: Public, 7–9 PM IST
 - Not made for kids

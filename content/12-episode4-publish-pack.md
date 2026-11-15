@@ -2,16 +2,16 @@
 
 **Series:** The Richest Man in Babylon · **Channel:** Deep Explains
 
-> **Status:** script + stills + 5/9 narration clips done. Baaki narration agle turn me,
-> phir `python3 scripts/build_video.py --episode video/episode04.py`.
+> **Status:** ✅ rendered · **3:38.84** · 1920×1080/25 · −13.7 LUFS · end screen timer **`03:26`**
 
 | File | Kya hai |
 |---|---|
-| `out/deep-explains-babylon-niyam-4.mp4` | main video · 1080p · end screen (render pending) |
-| `out/deep-explains-babylon-niyam-4.hi.srt` | Hindi captions (render ke baad) |
+| `out/deep-explains-babylon-niyam-4.mp4` | main video · **3:38.84** · 1080p · end screen |
+| `out/deep-explains-babylon-niyam-4.hi.srt` | Hindi captions (34 cues, sentence-timed) |
 | `out/thumbnail-niyam4-A-1280x720.jpg` | *"₹25,000 / एक कॉल में?"* — loss frame |
 | `out/thumbnail-niyam4-B-1280x720.jpg` | *"'गारंटीड' / 4% महीना?"* — red flag |
 | `out/thumbnail-niyam4-C-1280x720.jpg` | *"90% लोग / खोते हैं?"* — data frame |
+| `out/short-4.mp4` | 17.9s vertical Short |
 | `video/episode04.py` | script + shot list (editable) |
 
 ---
@@ -45,7 +45,16 @@
 • 4 galtiyan jo har koi karta hai
 
 ⏱ Chapters
-(full render ke baad auto: `python3 scripts/publish.py 4`)
+00:00 Hook
+00:22 Niyam 4 kya kehta hai
+00:43 Data: 90%+ log kyun kho jaate hain
+01:13 India example (₹50,000 · "4% mahina")
+01:43 Kahan kamzor padta hai
+02:13 2026 version: 4 kadam
+02:28 Teen sawaal + saal ki sameeksha
+02:51 Common galtiyan
+03:07 Takeaway + next video
+03:26 End screen
 
 ▶ Episode 3 (पैसा पैसा कमाए): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
 ▶ Episode 2 (ख़र्चे काबू में): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
@@ -93,8 +102,8 @@ Video में कोई fund/scheme recommend नहीं की गई। SE
 
 - [ ] Public, 7–9 PM IST
 - [ ] Playlist: **The Richest Man in Babylon — Hindi** (Episode 4)
-- [ ] Captions: `out/deep-explains-babylon-niyam-4.hi.srt`
-- [ ] End screen: right → **Niyam 5: कर्ज़ से आज़ादी**, left → **Niyam 3**
+- [x] Captions: `out/deep-explains-babylon-niyam-4.hi.srt` (34 cues, sentence-timed)
+- [ ] End screen timer **`03:26`** · right → **Niyam 5: कर्ज़ से आज़ादी**, left → **Niyam 3**
 - [ ] **Episode 3 ka end screen update** → right card ab Niyam 4
 - [ ] Thumbnail A/B (A vs B)
 - [ ] Not made for kids
@@ -108,7 +117,7 @@ Video में कोई fund/scheme recommend नहीं की गई। SE
 | 1 — पहले खुद को दो | 3:56 | Niyam 2 | 30-Day Money Reset |
 | 2 — ख़र्चे काबू में | 3:32 | Niyam 3 | Niyam 1 |
 | 3 — पैसा पैसा कमाए | 3:41 | Niyam 4 | Niyam 2 |
-| **4 — पैसा बचाओ** | ~3:45 | Niyam 5 | Niyam 3 |
+| **4 — पैसा बचाओ** | **3:38** | Niyam 5 | Niyam 3 |
 
 > End-screen cards baked-in hain, isliye "update" ka matlab: naya render nahi,
 > Studio me end-screen element ka **video/link** badalna. Frame wahi rehta hai.

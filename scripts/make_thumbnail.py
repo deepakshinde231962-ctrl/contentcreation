@@ -123,7 +123,7 @@ VARIANTS_EP4 = {
               focus=(0.42, 0.50), target=(0.72, 0.45)),
     # B — the "guaranteed" red flag
     "B": dict(src="assets/img/25_fraud_call.png", headline="'गारंटीड'", badge="4% महीना?",
-              kicker="48% साल का · सेबी का सवाल", zoom=1.08, max_lines=1,
+              kicker="साल का 48% · ₹80,000 का वादा", zoom=1.08, max_lines=1,
               focus=(0.58, 0.50), target=(0.72, 0.44)),
     # C — the data frame (derivatives)
     "C": dict(src="assets/img/26_emergency_vault.png", headline="90% लोग", badge="खोते हैं?",
