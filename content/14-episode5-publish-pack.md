@@ -2,11 +2,11 @@
 
 **Series:** The Richest Man in Babylon · **Channel:** Deep Explains
 
-> **Status:** ✅ rendered · **3:59.96** · 1920×1080/25 · AAC 48 kHz stereo · **−13.6 LUFS**, −0.9 dBFS peak · 12s end-screen canvas (Studio timer **03:48**). QA: 19 video frames + 5 Short frames inspected; end-screen tail −31.5 dB mean.
+> **Status:** ✅ rendered · **3:59.88** · 1920×1080/25 · AAC 48 kHz stereo · **−13.6 LUFS**, −0.9 dBFS peak · 12s baked end-screen canvas (Studio timer **03:48**). Corrected prior-video label checked locally; processed YouTube preview and clickable elements still require Studio.
 
 | File | Purpose |
 |---|---|
-| `out/deep-explains-babylon-niyam-5.mp4` | main episode · 3:59.96 (1080p; 12s baked end-screen canvas) |
+| `out/deep-explains-babylon-niyam-5.mp4` | main episode · 3:59.88 (1080p; 12s baked end-screen canvas) |
 | `out/deep-explains-babylon-niyam-5.hi.srt` | sentence-timed Hindi captions (40 cues) |
 | `out/thumbnail-niyam5-A-1280x720.jpg` | ₹3,000 / ₹900 ही घटे? · **primary** |
 | `out/thumbnail-niyam5-B-1280x720.jpg` | दबासीर / कर्ज़ कैसे चुकाया? |

@@ -8,7 +8,7 @@
 | 2 | 218.44 | 30.0 | 19.20 | 45 cues | `out/thumbnail-niyam2-A-1280x720.jpg` | **03:27** |
 | 3 | 220.88 | 29.5 | 17.70 | 45 cues | `out/thumbnail-niyam3-A-1280x720.jpg` | **03:29** |
 | 4 | 218.84 | 64.0 | 17.93 | 34 cues | `out/thumbnail-niyam4-A-1280x720.jpg` | **03:27** |
-| 5 | 239.96 | 68.2 | 25.60 | 40 cues | `out/thumbnail-niyam5-A-1280x720.jpg` | **03:48** |
+| 5 | 239.88 | 32.7 | 25.60 | 40 cues | `out/thumbnail-niyam5-A-1280x720.jpg` | **03:48** |
 | 6 | 226.40 | 26.3 | 29.27 | 65 cues | `out/thumbnail-niyam6-A-1280x720.jpg` | **03:35** |
 | 7 | 235.88 | 25.3 | 26.50 | 74 cues | `out/thumbnail-niyam7-A-1280x720.jpg` | **03:44** |
 | 8 | 223.40 | 23.5 | 26.30 | 69 cues | `out/thumbnail-niyam8-A-1280x720.jpg` | **03:32** |
@@ -20,8 +20,9 @@
 
 ## Still requires channel owner / YouTube Studio
 
-- [ ] Confirm intended commercial use/licences for narration, generated art, fonts and audio; review videos and upload metadata personally.
+- [ ] Review media and intended-use rights personally: font notices are in `assets/fonts/`, while voice/image provenance and channel clearance still need owner confirmation. See `content/23-asset-provenance.md`.
 - [ ] Create the **The Richest Man in Babylon — Hindi** playlist and upload each full video in order (or schedule after review); set title/description/tags, language and appropriate audience settings from `out/upload-N.md`.
+- [ ] Before transfer, run `python3 scripts/make_release_manifest.py --check` to confirm all 54 media files match the frozen handoff; re-run after copying, since SHA-256 cannot verify publication.
 - [ ] Upload each video’s `.hi.srt` in Hindi, choose one of its three JPG thumbnails and inspect the processed public/private preview.
 - [ ] Add actual Studio **video + subscribe end-screen elements** on the 12-second baked canvas, not just the artwork. Follow `content/07-end-screen.md`; link episodes only once published.
 - [ ] Upload each `out/short-N.mp4` separately. Its title, safety notes, description and long-video link guidance are in the same upload sheet.
@@ -30,4 +31,4 @@
 
 Known video IDs in local config: **0/9** (presence alone does not prove publication).
 
-Recheck locally: `python3 scripts/check_release.py` and `python3 -m unittest discover -s tests -q`.
+Recheck locally: `python3 scripts/check_release.py`, `python3 scripts/make_release_manifest.py --check` and `python3 -m unittest discover -s tests -q`.
