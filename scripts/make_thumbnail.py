@@ -146,6 +146,54 @@ VARIANTS_EP5 = {
               focus=(0.55, 0.52), target=(0.74, 0.45)),
 }
 
+VARIANTS_EP6 = {
+    "A": dict(src="assets/img/40_home_keys.jpg", headline="किराया ₹18,000?",
+              badge="EMI ₹34,713", kicker="EP 6 · HYPOTHETICAL COSTS", zoom=1.10,
+              focus=(0.68, 0.54), target=(0.76, 0.47)),
+    "B": dict(src="assets/img/41_rent_vs_buy.jpg", headline="घर खरीदें?",
+              badge="या किराया?", kicker="EP 6 · HOME COST", zoom=1.10,
+              focus=(0.78, 0.54), target=(0.77, 0.48)),
+    "C": dict(src="assets/img/42_emi_ledger.jpg", headline="EMI ज़्यादा?",
+              badge="पूरी लागत?", kicker="EP 6 · FULL COST", zoom=1.10,
+              focus=(0.68, 0.52), target=(0.77, 0.46)),
+}
+
+VARIANTS_EP7 = {
+    "A": dict(src="assets/img/43_retirement_clock.jpg", headline="₹30,000 आज",
+              badge="₹1.29 लाख?", kicker="EP 7 · 6% ASSUMED · 25 YEARS", zoom=1.10,
+              focus=(0.72, 0.50), target=(0.78, 0.46)),
+    "B": dict(src="assets/img/45_family_safety.jpg", headline="बुढ़ापे की कमाई",
+              badge="कितनी?", kicker="EP 7 · FAMILY SAFETY", zoom=1.08,
+              focus=(0.72, 0.52), target=(0.77, 0.46)),
+    "C": dict(src="assets/img/44_future_jar.jpg", headline="महँगाई कितनी?",
+              badge="25 साल?", kicker="EP 7 · INFLATION EXAMPLE", zoom=1.10,
+              focus=(0.70, 0.52), target=(0.77, 0.46)),
+}
+
+VARIANTS_EP8 = {
+    "A": dict(src="assets/img/46_craft_tools.jpg", headline="₹2,000 कोर्स?",
+              badge="कमाई पक्की?", kicker="EP 8 · COURSE COST EXAMPLE", zoom=1.10,
+              focus=(0.70, 0.50), target=(0.77, 0.46)),
+    "B": dict(src="assets/img/48_skill_portfolio.jpg", headline="नया हुनर?",
+              badge="काम कहाँ?", kicker="EP 8 · SKILLS", zoom=1.10,
+              focus=(0.74, 0.50), target=(0.77, 0.46)),
+    "C": dict(src="assets/img/47_skill_notebook.jpg", headline="सर्टिफिकेट मिला",
+              badge="कमाई नहीं?", kicker="EP 8 · REAL WORK", zoom=1.08,
+              focus=(0.70, 0.52), target=(0.76, 0.46)),
+}
+
+VARIANTS_EP9 = {
+    "A": dict(src="assets/img/49_five_coins.jpg", headline="पाँच नियम?",
+              badge="आज भी?", kicker="EP 9 · FIVE LAWS OF GOLD", zoom=1.08,
+              focus=(0.72, 0.52), target=(0.76, 0.45)),
+    "B": dict(src="assets/img/03_gold.png", headline="₹3,000 बचत",
+              badge="कहाँ जाए?", kicker="EP 9 · 10% EXAMPLE", zoom=1.08,
+              focus=(0.70, 0.52), target=(0.77, 0.45)),
+    "C": dict(src="assets/img/49_five_coins.jpg", headline="सात इलाज?",
+              badge="पाँच नियम?", kicker="EP 9 · NOT THE SAME", zoom=1.16,
+              focus=(0.67, 0.52), target=(0.75, 0.47)),
+}
+
 VARIANTS = {
     # A — authority: series identity, warm audience
     "A": dict(src="assets/img/02_arkad.png", headline="पहले खुद को दो", badge="10%",
@@ -182,6 +230,18 @@ if __name__ == "__main__":
         elif "05" in ep:
             prefix = "niyam5-"
             globals()["VARIANTS"] = VARIANTS_EP5
+        elif "06" in ep:
+            prefix = "niyam6-"
+            globals()["VARIANTS"] = VARIANTS_EP6
+        elif "07" in ep:
+            prefix = "niyam7-"
+            globals()["VARIANTS"] = VARIANTS_EP7
+        elif "08" in ep:
+            prefix = "niyam8-"
+            globals()["VARIANTS"] = VARIANTS_EP8
+        elif "09" in ep:
+            prefix = "niyam9-"
+            globals()["VARIANTS"] = VARIANTS_EP9
         else:
             prefix = ""
     which = [a for a in args if a in VARIANTS] or list(VARIANTS)

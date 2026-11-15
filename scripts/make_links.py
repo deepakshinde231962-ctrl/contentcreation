@@ -141,6 +141,10 @@ def main():
         3: "content/11-episode3-publish-pack.md",
         4: "content/12-episode4-publish-pack.md",
         5: "content/14-episode5-publish-pack.md",
+        6: "content/16-episode6-publish-pack.md",
+        7: "content/18-episode7-publish-pack.md",
+        8: "content/20-episode8-publish-pack.md",
+        9: "content/22-episode9-publish-pack.md",
     }
     changed = 0
     for ep, path in packs.items():
