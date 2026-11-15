@@ -45,8 +45,10 @@ ROOT = R.ROOT
 OUT = os.path.join(ROOT, "out")
 AUDIO = os.path.join(ROOT, "assets", "audio")
 AUDIO_EP = AUDIO  # switched per episode
-MUSIC = os.path.join(ROOT, "assets", "music", "bed.mp3")
 WORK = os.path.join(OUT, "_work")
+# Each render synthesises a bed matching its own length. Keep the ephemeral
+# result in ignored scratch rather than overwriting the tracked legacy bed.
+MUSIC = os.path.join(WORK, "bed.mp3")
 
 
 def ffmpeg_exe() -> str:

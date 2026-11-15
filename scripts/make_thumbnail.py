@@ -131,6 +131,21 @@ VARIANTS_EP4 = {
               focus=(0.55, 0.50), target=(0.73, 0.45)),
 }
 
+VARIANTS_EP5 = {
+    # A — the video's first-month arithmetic (explicitly framed as an example).
+    "A": dict(src="assets/img/31_debt_ledger.png", headline="₹3,000", badge="₹900 ही घटे?",
+              kicker="NIYAM 5 · ₹60,000 बिल · उदाहरण", zoom=1.10, max_lines=1,
+              focus=(0.65, 0.50), target=(0.80, 0.45)),
+    # B — Dabasir's fictional story, not a claim of a historical clay tablet.
+    "B": dict(src="assets/img/30_dabasir.png", headline="दबासीर", badge="कर्ज़ कैसे चुकाया?",
+              kicker="NIYAM 5 · THE RICHEST MAN IN BABYLON", zoom=1.10, flip=True,
+              max_lines=1, focus=(0.38, 0.48), target=(0.78, 0.45)),
+    # C — seven payments only under the video’s stated simplified assumptions.
+    "C": dict(src="assets/img/33_freedom_dawn.png", headline="7 महीने", badge="कर्ज़ ख़त्म?",
+              kicker="NIYAM 5 · ₹60,000 · ₹10,000/माह · उदाहरण", zoom=1.08, max_lines=1,
+              focus=(0.55, 0.52), target=(0.74, 0.45)),
+}
+
 VARIANTS = {
     # A — authority: series identity, warm audience
     "A": dict(src="assets/img/02_arkad.png", headline="पहले खुद को दो", badge="10%",
@@ -164,6 +179,9 @@ if __name__ == "__main__":
         elif "04" in ep:
             prefix = "niyam4-"
             globals()["VARIANTS"] = VARIANTS_EP4
+        elif "05" in ep:
+            prefix = "niyam5-"
+            globals()["VARIANTS"] = VARIANTS_EP5
         else:
             prefix = ""
     which = [a for a in args if a in VARIANTS] or list(VARIANTS)

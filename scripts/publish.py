@@ -12,6 +12,7 @@ thumbnail pick, caption file, end-screen card text + timer)
 """
 from __future__ import annotations
 
+import math
 import os
 import re
 import subprocess
@@ -21,9 +22,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PACK = {1: "content/08-publish-pack.md",
         2: "content/10-episode2-publish-pack.md",
         3: "content/11-episode3-publish-pack.md",
-        4: "content/12-episode4-publish-pack.md"}
+        4: "content/12-episode4-publish-pack.md",
+        5: "content/14-episode5-publish-pack.md"}
 SLUG = {1: "babylon-niyam-1", 2: "babylon-niyam-2", 3: "babylon-niyam-3",
-        4: "babylon-niyam-4"}
+        4: "babylon-niyam-4", 5: "babylon-niyam-5"}
 
 
 def ffmpeg_exe() -> str:
@@ -75,25 +77,33 @@ def main():
     if not pinned:
         pinned = block_after(text, "## 4. Pinned comment")
 
-    # swap any leftover placeholder for the live link block (see make_links.py)
+    # Replace the pack's Episode bullets with current URLs (or playlist fallback).
+    # Keep them *beside the chapters*, before sources/disclaimer/hashtags, not
+    # tacked onto the bottom where viewers won't see them.
     link_block = subprocess.run(
-        [sys.executable, os.path.join(ROOT, "scripts", "make_links.py")],
-        capture_output=True, text=True).stdout
+        [sys.executable, os.path.join(ROOT, "scripts", "make_links.py"),
+         "--block", str(ep)], capture_output=True, text=True, check=True).stdout
     real = "\n".join(l for l in link_block.splitlines() if l.startswith("▶"))
     if real:
-        desc = re.sub(r"^▶ .*$", "", desc, flags=re.M)          # drop old bullets
-        desc = desc.replace("\n\n\n", "\n\n")
-        # insert right after the chapters table
-        desc = desc.rstrip() + "\n" + real + "\n"
+        desc = re.sub(r"^▶ .*\n?", "", desc, flags=re.M)
+        desc = re.sub(r"\n{3,}", "\n\n", desc)
+        marker = "📚 Sources"
+        if marker in desc:
+            desc = desc.replace(marker, real + "\n\n" + marker, 1)
+        else:
+            desc = desc.rstrip() + "\n\n" + real + "\n"
 
     mp4 = f"out/deep-explains-{SLUG[ep]}.mp4"
     dur = probe_dur(os.path.join(ROOT, mp4))
-    timer = f"{int(dur // 60):02d}:{int(dur % 60) - 12:02d}" if dur else "?"
+    # YouTube's editor takes whole seconds. Round UP so clickable cards don't
+    # cover the last spoken caption when the 12-second canvas starts at .8s.
+    remaining = max(0, math.ceil(dur - 12)) if dur else 0
+    timer = f"{remaining // 60:02d}:{remaining % 60:02d}" if dur else "?"
 
     lines = [
         f"# Upload sheet — Episode {ep}",
         "",
-        f"**File:** `{mp4}`" + (f"  ·  {int(dur // 60)}:{int(dur % 60):05.2f}" if dur else ""),
+        f"**File:** `{mp4}`" + (f"  ·  {int(dur // 60)}:{dur % 60:05.2f}" if dur else ""),
         "",
         "## Title (copy)",
         "```", title, "```",
@@ -110,7 +120,7 @@ def main():
         "## Studio settings",
         f"- Captions: `out/deep-explains-{SLUG[ep]}.hi.srt` → Hindi",
         f"- Thumbnail: `out/thumbnail-niyam{ep}-A-1280x720.jpg` (A/B: test B)",
-        f"- End screen timer: **{timer}** (video length − 12s)",
+        f"- End screen timer: **{timer}** (last 12s, rounded up to a whole second)",
         "- Playlist: The Richest Man in Babylon — Hindi",
         "- Visibility: Public, 7–9 PM IST",
         "- Not made for kids",

@@ -17,7 +17,10 @@ Usage
   # 2. regenerate the ready-to-paste blocks in every publish pack
   python3 scripts/make_links.py --write
 
-  # 3. or just print what the links should be
+  # 3. or print one upload description's link block (used by publish.py)
+  python3 scripts/make_links.py --block 5
+
+  # 4. or inspect the IDs/fallbacks
   python3 scripts/make_links.py
 
 Resolution order for a video ID (first hit wins):
@@ -104,11 +107,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true",
                     help="rewrite the ▶ blocks inside content/*.md publish packs")
+    ap.add_argument("--block", type=int, choices=range(1, 10),
+                    help="print just the link block for an episode's description")
     ap.add_argument("--playlist", default="")
     for i in range(1, 10):
         ap.add_argument(f"--ep{i}", default="")
     args = ap.parse_args()
     data = load_links()
+
+    if args.block:
+        print(render_block(args.block, data, args))
+        return
 
     print("channel :", CHANNEL)
     print("playlist:", playlist(data, args))
@@ -130,6 +139,8 @@ def main():
     packs = {
         2: "content/10-episode2-publish-pack.md",
         3: "content/11-episode3-publish-pack.md",
+        4: "content/12-episode4-publish-pack.md",
+        5: "content/14-episode5-publish-pack.md",
     }
     changed = 0
     for ep, path in packs.items():
