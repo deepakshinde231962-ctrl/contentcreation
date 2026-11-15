@@ -20,6 +20,7 @@ Usage
 from __future__ import annotations
 
 import argparse
+import glob
 import json
 import math
 import os
@@ -45,7 +46,10 @@ ROOT = R.ROOT
 OUT = os.path.join(ROOT, "out")
 AUDIO = os.path.join(ROOT, "assets", "audio")
 AUDIO_EP = AUDIO  # switched per episode
-WORK = os.path.join(OUT, "_work")
+WORK_ROOT = os.path.join(OUT, "_work")
+# One scratch directory per episode. Otherwise --remux could silently reuse
+# another episode's joined.mp4 and QA stills could mix unrelated cards.
+WORK = os.path.join(WORK_ROOT, EPISODE_SLUG)
 # Each render synthesises a bed matching its own length. Keep the ephemeral
 # result in ignored scratch rather than overwriting the tracked legacy bed.
 MUSIC = os.path.join(WORK, "bed.mp3")
@@ -521,7 +525,7 @@ def render_scene(idx: int, sc: dict) -> str:
 
 
 # ---------------------------------------------------------------------------
-# 5. music bed  (synthesised locally: no licensing issues, no downloads)
+# 5. music bed  (synthesised locally, no downloads; confirm usage rights separately)
 # ---------------------------------------------------------------------------
 def synth_music_safe(duration: float, dst: str):
     """synth_music but piping PCM through ffmpeg stdin."""
@@ -625,7 +629,7 @@ def synth_music_safe(duration: float, dst: str):
 
 def load_episode(path: str):
     """Load an episode module and point the renderer at its audio/art."""
-    global SCENES, SERIES, NEXT_EPISODE, PREV_VIDEO, AUDIO, EPISODE_SLUG, EPISODE_TITLE
+    global SCENES, SERIES, NEXT_EPISODE, PREV_VIDEO, AUDIO, EPISODE_SLUG, EPISODE_TITLE, WORK, MUSIC
     import importlib.util
     spec = importlib.util.spec_from_file_location("episode_mod", path)
     mod = importlib.util.module_from_spec(spec)
@@ -637,6 +641,8 @@ def load_episode(path: str):
     PREV_VIDEO = ep.get("prev_video", PREV_VIDEO)
     EPISODE_SLUG = ep.get("slug", EPISODE_SLUG)
     EPISODE_TITLE = ep.get("title", EPISODE_TITLE)
+    WORK = os.path.join(WORK_ROOT, EPISODE_SLUG)
+    MUSIC = os.path.join(WORK, "bed.mp3")
     AUDIO = os.path.join(ROOT, "assets", "audio", ep.get("audio_dir", "ep2")) \
         if ep.get("audio_dir", "ep2") else os.path.join(ROOT, "assets", "audio")
     print(f"episode: {EPISODE_TITLE}  ({len(SCENES)} scenes, audio: {os.path.relpath(AUDIO, ROOT)})")
@@ -661,10 +667,15 @@ def main():
     only = {s for s in args.only.split(",") if s}
 
     if args.stills:
-        os.makedirs(os.path.join(OUT, "stills"), exist_ok=True)
+        stills_dir = os.path.join(OUT, "stills", EPISODE_SLUG)
+        os.makedirs(stills_dir, exist_ok=True)
         for idx, sc in enumerate(SCENES):
             if only and sc["id"] not in only:
                 continue
+            # --only refreshes the selected scene; don't leave older captions
+            # from this episode in the QA folder after re-recording its voice.
+            for old in glob.glob(os.path.join(stills_dir, f"{idx + 1:02d}_*.jpg")):
+                os.remove(old)
             plate_path = os.path.join(WORK, f"plate_{idx + 1:02d}_{sc['id']}.png")
             build_plate(os.path.join(ROOT, sc["image"]), plate_path,
                         scrim="none" if sc.get("kind") == "endscreen" else "left",
@@ -673,7 +684,7 @@ def main():
             plate = Image.open(plate_path).convert("RGBA")
             if sc.get("kind") == "endscreen":
                 Image.alpha_composite(plate, endscreen_layer(idx)).convert("RGB").save(
-                    os.path.join(OUT, "stills", f"{idx + 1:02d}_endscreen.jpg"), quality=88)
+                    os.path.join(stills_dir, f"{idx + 1:02d}_endscreen.jpg"), quality=88)
                 print("still ok endscreen")
                 continue
             for ci, card in enumerate(sc["cards"]):
@@ -685,7 +696,7 @@ def main():
                         max_lines=1 if is_timed(sc) else 2)):
                     img2 = Image.alpha_composite(overlay, caption_band(plate, chunk["lines"]))
                     Image.alpha_composite(plate, img2).convert("RGB").save(
-                        os.path.join(OUT, "stills", f"{idx + 1:02d}_{sc['id']}_c{ci}_cap{k}.jpg"),
+                        os.path.join(stills_dir, f"{idx + 1:02d}_{sc['id']}_c{ci}_cap{k}.jpg"),
                         quality=88)
             print("still ok", sc["id"])
         return

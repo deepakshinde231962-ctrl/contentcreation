@@ -5,6 +5,7 @@ out/stills/
 out/thumbnail-niyam[6-9]-*-1280x720.png
 __pycache__/
 *.pyc
+.venv/
 .DS_Store
 
 # local YouTube IDs (see links.example.json)

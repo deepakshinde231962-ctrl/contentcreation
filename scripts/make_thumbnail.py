@@ -88,11 +88,11 @@ def make(src, headline, badge, kicker, dst, flip=False, zoom=1.02,
 
 VARIANTS_EP2 = {
     # A — pain + specificity: the "70% kharche faltu" angle
-    "A": dict(src="assets/img/11_budget.png", headline="70% खर्च", badge="फालतू?", 
+    "A": dict(src="assets/img/11_budget.png", headline="हर खर्च", badge="ज़रूरी?",
               kicker="NIYAM 2 · ख़र्चे काबू में", zoom=1.10, max_lines=1,
               focus=(0.52, 0.50), target=(0.74, 0.45)),
     # B — daily-life frame (subscriptions / UPI)
-    "B": dict(src="assets/img/10_subscriptions.png", headline="पैसा कहाँ गया?", badge="₹72,000",
+    "B": dict(src="assets/img/10_subscriptions.png", headline="पैसा कहाँ गया?", badge="₹78,000",
               kicker="3 आदतें · 1 साल", zoom=1.14, max_lines=1,
               focus=(0.50, 0.45), target=(0.72, 0.42)),
     # C — curiosity: the promise

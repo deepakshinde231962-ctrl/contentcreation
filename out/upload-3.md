@@ -1,6 +1,8 @@
 # Upload sheet — Episode 3
 
-**File:** `out/deep-explains-babylon-niyam-3.mp4`  ·  3:40.00
+**Status:** Locally prepared; no upload performed by this workflow. Verify channel status in Studio. Baked end-screen boxes are not clickable.
+
+**File:** `out/deep-explains-babylon-niyam-3.mp4`  ·  3:40.88
 
 ## Title (copy)
 ```
@@ -33,10 +35,10 @@ The Richest Man in Babylon (1926) का Niyam 3: बचत को काम प
 02:32 Sameeksha + badhne do
 02:52 Common galtiyan
 03:09 Takeaway + next video
-03:28 End screen
+03:28 End-screen canvas (Studio clickable elements from 03:29)
 
-▶ Episode 2 (ख़र्चे काबू में): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 1 (पहले खुद को दो): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 2 (ख़र्चे काबू में): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 1 (पहले खुद को दो): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
 
 📚 Sources
 • George S. Clason, The Richest Man in Babylon (1926) — Niyam 3 & 4, public domain
@@ -65,10 +67,24 @@ richest man in babylon hindi, niyam 3, compounding hindi, paisa paisa kamaye, po
 Video में कोई fund/scheme recommend नहीं की गई — सिर्फ़ compounding का math और Babylon ka niyam.
 ```
 
-## Studio settings
+## Studio settings — full video
 - Captions: `out/deep-explains-babylon-niyam-3.hi.srt` → Hindi
-- Thumbnail: `out/thumbnail-niyam3-A-1280x720.jpg` (A/B: test B)
-- End screen timer: **03:28** (video length − 12s)
-- Playlist: The Richest Man in Babylon — Hindi
-- Visibility: Public, 7–9 PM IST
-- Not made for kids
+- Thumbnail: `out/thumbnail-niyam3-A-1280x720.jpg` (B/C alternatives available)
+- End-screen canvas starts at 03:28.88; Studio timer: **03:29** (rounded up; 12s canvas)
+- Left video → Episode 2; right video → Episode 4 (when published); circle → Subscribe. Add each in Studio only after the linked video exists.
+- Playlist: The Richest Man in Babylon — Hindi (create and order 1–9 in Studio)
+- Set language Hindi, category Education and the appropriate audience setting in Studio; preview before choosing visibility/schedule.
+
+## Short — separate Studio upload
+- File: `out/short-3.mp4`  ·  17.70s  ·  1080×1920
+- Title: `₹5,000 महीना: 10 साल की देरी का असर? #Shorts`
+- Description (copy):
+```
+₹5,000/माह और 12% सालाना सिर्फ़ गणित का उदाहरण हैं, किसी निवेश का वादा या पक्का रिटर्न नहीं। समय के साथ लागत और जोखिम भी जाँचो।
+
+पूरा Episode 3 upload होने पर video link जोड़ें। अभी चैनल का प्लेलिस्ट पेज (सीरीज़ लिंक नहीं): https://www.youtube.com/@DeepExplainsOfficial/playlists
+
+#Shorts #DeepExplains #FinancialLiteracyHindi
+```
+- Add the real full-video URL after uploading it, then add Short to the series playlist if appropriate.
+- Choose a readable in-video frame as the Short cover if your Studio interface offers it. Do not upload the full-video thumbnail as a Short cover by default.

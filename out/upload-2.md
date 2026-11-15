@@ -1,15 +1,17 @@
 # Upload sheet — Episode 2
 
-**File:** `out/deep-explains-babylon-niyam-2.mp4`  ·  3:32.00
+**Status:** Locally prepared; no upload performed by this workflow. Verify channel status in Studio. Baked end-screen boxes are not clickable.
+
+**File:** `out/deep-explains-babylon-niyam-2.mp4`  ·  3:38.44
 
 ## Title (copy)
 ```
-70% खर्च "ज़रूरी" क्यों लगता है? | Richest Man in Babylon Hindi (Niyam 2)
+हर खर्च "ज़रूरी" क्यों लगता है? | Richest Man in Babylon Hindi (Niyam 2)
 ```
 
 ## Description (copy)
 ```
-सैलरी आई और लगता है सब ज़रूरी है — और महीने के आख़िर में पता चलता है कि 70% खर्च ज़रूरी नहीं था।
+सैलरी आई और लगता है सब ज़रूरी है — महीने के आख़िर में हिसाब देखें: कौन-सा खर्च सच में ज़रूरी था?
 
 The Richest Man in Babylon (George S. Clason, 1926) का दूसरा नियम: ख़र्चे काबू में करो — पर इसका
 मतलब "सब बंद कर दो" नहीं है। इस वीडियो में नियम, उसका evidence, आज के India का ₹50,000 wala
@@ -17,32 +19,37 @@ example, वो 3 जगह जहाँ ये नियम FAIL होता �
 
 इस वीडियो में:
 • Arkad ka doosra niyam — ज़रूरत vs इच्छा
-• Evidence: Madrian & Shea (2001) — जो दिखता है वही खर्च होता है; Prelec & Simester (2001) — card का पैसा कम लगता है
-• ₹50,000 salary → 3 आदतें = ₹72,000 साल के
+• Evidence: Madrian & Shea (2001) — 401(k) में default enrolment से भागीदारी बढ़ी (खर्च की स्टडी नहीं); Prelec & Simester (2001) — card बनाम नक़द से कुछ लोगों की भुगतान-इच्छा बदली
+• ₹50,000 की मान ली गई salary: ₹500 + ₹4,000 + ₹2,000 = ₹6,500/माह × 12 = ₹78,000 साल का खर्च (पूरी बचत नहीं)
 • Kahan fail hota hai: अनियमित आमदनी, अकेला कमाने वाला, बजट जो कभी नहीं देखा गया
 • 2026 version: तय vs बदलता खर्च, हफ़्ते का UPI बजट, महीने के 10 मिनट
 • 4 गलतियाँ जो हर कोई करता है
 
 ⏱ Chapters
 00:00 Hook
-00:20 Niyam 2 kya kehta hai
-00:44 Evidence — hisaab kisse banta hai
-01:10 India example (₹50,000)
-01:34 Kahan fail hota hai
-02:03 2026 version: 3 kadam
-02:26 Bachat pehle
-02:43 Common galtiyan
-03:01 Takeaway + next video
-03:20 End screen
+00:21 Niyam 2 kya kehta hai
+00:45 Evidence — asal studies kya kehti hain
+01:15 India example (₹50,000)
+01:40 Kahan fail hota hai
+02:10 2026 version: 4 kadam
+02:32 Bachat pehle
+02:49 Common galtiyan
+03:07 Takeaway + next video
+03:26 End-screen canvas (Studio clickable elements from 03:27)
 
-▶ Episode 1 (पहले खुद को दो): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
 ▶ पहले देखें — 30-Day Money Reset Plan (Joseph Murphy, Part 3):
 https://www.youtube.com/watch?v=I97vx1A6qME
 
+▶ Episode 1 (पहले खुद को दो): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+
 📚 Sources
 • Madrian & Shea (2001), Quarterly Journal of Economics — DOI 10.1162/003355301753265543
-• Prelec & Simester (2001), Sloan Management Review — "Always Leave Home Without It"
+• Prelec & Simester (2001), Marketing Letters 12(1), 5–12 — “Always Leave Home Without It”; DOI 10.1023/A:1008196717017
 • George S. Clason, The Richest Man in Babylon (1926), public domain
+
+हिसाब की शर्तें: तीनों खर्च हर महीने एक जैसे मानकर ₹500 + ₹4,000 + ₹2,000 = ₹6,500/माह;
+12 × ₹6,500 = ₹78,000/साल। इनमें से कौन-सा खर्च ज़रूरी है या बचाया जा सकता है,
+यह घर के हालात पर निर्भर करता है; ₹78,000 की बचत का दावा नहीं।
 
 Disclaimer: यह personalised investment या credit advice नहीं है। कोई specific stock, fund या
 scheme recommend नहीं की गई है। अपना जोखिम और समय देखकर फैसला करें।
@@ -63,13 +70,27 @@ richest man in babylon hindi, niyam 2, kharch kabu mein, budgeting hindi, expens
 ```
 आपके महीने का सबसे बड़ा "छोटा" खर्च कौन-सा है? Number लिखिए — ₹500 subscription हो या ₹2,000 का ऑटो 🙂
 
-Sources: Madrian & Shea, QJE 2001 · Prelec & Simester, Sloan 2001. Video में कोई fund/scheme recommend नहीं की गई।
+Sources: Madrian & Shea, QJE 2001 (retirement participation) · Prelec & Simester, Marketing Letters 2001 (card vs cash). किसी fund/scheme की सिफ़ारिश नहीं।
 ```
 
-## Studio settings
+## Studio settings — full video
 - Captions: `out/deep-explains-babylon-niyam-2.hi.srt` → Hindi
-- Thumbnail: `out/thumbnail-niyam2-A-1280x720.jpg` (A/B: test B)
-- End screen timer: **03:20** (video length − 12s)
-- Playlist: The Richest Man in Babylon — Hindi
-- Visibility: Public, 7–9 PM IST
-- Not made for kids
+- Thumbnail: `out/thumbnail-niyam2-A-1280x720.jpg` (B/C alternatives available)
+- End-screen canvas starts at 03:26.44; Studio timer: **03:27** (rounded up; 12s canvas)
+- Left video → Episode 1; right video → Episode 3 (when published); circle → Subscribe. Add each in Studio only after the linked video exists.
+- Playlist: The Richest Man in Babylon — Hindi (create and order 1–9 in Studio)
+- Set language Hindi, category Education and the appropriate audience setting in Studio; preview before choosing visibility/schedule.
+
+## Short — separate Studio upload
+- File: `out/short-2.mp4`  ·  19.20s  ·  1080×1920
+- Title: `तीन खर्च साल में ₹78,000? | Babylon Ep 2 #Shorts`
+- Description (copy):
+```
+मान लो: ₹500 सब्सक्रिप्शन + ₹4,000 बाहर खाना + ₹2,000 ऑटो = ₹6,500/माह; × 12 = ₹78,000 साल का खर्च। यह पूरी रकम बचाने का वादा नहीं; पहले अपना हिसाब देखो।
+
+पूरा Episode 2 upload होने पर video link जोड़ें। अभी चैनल का प्लेलिस्ट पेज (सीरीज़ लिंक नहीं): https://www.youtube.com/@DeepExplainsOfficial/playlists
+
+#Shorts #DeepExplains #FinancialLiteracyHindi
+```
+- Add the real full-video URL after uploading it, then add Short to the series playlist if appropriate.
+- Choose a readable in-video frame as the Short cover if your Studio interface offers it. Do not upload the full-video thumbnail as a Short cover by default.

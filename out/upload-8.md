@@ -1,5 +1,7 @@
 # Upload sheet — Episode 8
 
+**Status:** Locally prepared; no upload performed by this workflow. Verify channel status in Studio. Baked end-screen boxes are not clickable.
+
 **File:** `out/deep-explains-babylon-niyam-8.mp4`  ·  3:43.40
 
 ## Title (copy)
@@ -26,13 +28,13 @@ The Richest Man in Babylon की मूल कथा को अपने शब
 03:09 Takeaway + फिनाले
 03:31 End-screen canvas (Studio में cards लगाने होंगे)
 
-▶ Episode 7 (बुढ़ापे की कमाई): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 6 (घर: खर्च या निवेश?): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 5 (कर्ज़ से आज़ादी): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 4 (पैसा बचाओ, खो मत दो): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 3 (पैसा पैसा कमाए): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 2 (ख़र्चे काबू में): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 1 (पहले खुद को दो): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 7 (बुढ़ापे की कमाई): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 6 (घर: खर्च या निवेश?): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 5 (कर्ज़ से आज़ादी): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 4 (पैसा बचाओ, खो मत दो): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 3 (पैसा पैसा कमाए): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 2 (ख़र्चे काबू में): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 1 (पहले खुद को दो): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
 
 📚 Sources
 • George S. Clason, *The Richest Man in Babylon*, Chapter 3, seventh cure (ability to earn): https://en.wikisource.org/wiki/The_Richest_Man_In_Babylon/Chapter_3
@@ -57,10 +59,24 @@ richest man in babylon hindi, earning skills hindi, upskilling roi india, course
 ₹2,000 कोर्स + 40 घंटे अभ्यास; ₹1,000/माह नया काम सिर्फ़ उदाहरण है, गारंटी नहीं। कौशल चुनते समय आप काम का नमूना कैसे जाँचते हैं?
 ```
 
-## Studio settings
+## Studio settings — full video
 - Captions: `out/deep-explains-babylon-niyam-8.hi.srt` → Hindi
-- Thumbnail: `out/thumbnail-niyam8-A-1280x720.jpg` (A/B: test B)
-- End screen timer: **03:32** (last 12s, rounded up to a whole second)
-- Playlist: The Richest Man in Babylon — Hindi
-- Visibility: Public, 7–9 PM IST
-- Not made for kids
+- Thumbnail: `out/thumbnail-niyam8-A-1280x720.jpg` (B/C alternatives available)
+- End-screen canvas starts at 03:31.40; Studio timer: **03:32** (rounded up; 12s canvas)
+- Left video → Episode 7; right video → Episode 9 (when published); circle → Subscribe. Add each in Studio only after the linked video exists.
+- Playlist: The Richest Man in Babylon — Hindi (create and order 1–9 in Studio)
+- Set language Hindi, category Education and the appropriate audience setting in Studio; preview before choosing visibility/schedule.
+
+## Short — separate Studio upload
+- File: `out/short-8.mp4`  ·  26.30s  ·  1080×1920
+- Title: `₹2,000 का कोर्स कमाई बढ़ाएगा? #Shorts`
+- Description (copy):
+```
+₹2,000 के कोर्स के साथ 40 घंटे अभ्यास: काम मिलने पर ही अतिरिक्त आमदनी संभव है। सर्टिफिकेट से नौकरी या कमाई की गारंटी नहीं।
+
+पूरा Episode 8 upload होने पर video link जोड़ें। अभी चैनल का प्लेलिस्ट पेज (सीरीज़ लिंक नहीं): https://www.youtube.com/@DeepExplainsOfficial/playlists
+
+#Shorts #DeepExplains #FinancialLiteracyHindi
+```
+- Add the real full-video URL after uploading it, then add Short to the series playlist if appropriate.
+- Choose a readable in-video frame as the Short cover if your Studio interface offers it. Do not upload the full-video thumbnail as a Short cover by default.

@@ -56,7 +56,6 @@ TITLES = {
     8: "खुद को बड़ा बनाओ",
     9: "Five Laws of Gold",
 }
-LABEL = {1: "Episode 1 · 3:56", 2: "Episode 2 · 3:32", 3: "Episode 3 · 3:41"}
 
 
 def load_links() -> dict:
@@ -89,10 +88,12 @@ def playlist(data: dict, args) -> str:
 
 
 def line_for(n: int, url: str, pl: str = PLAYLIST_FALLBACK) -> str:
-    """One description bullet for episode n (never broken, even pre-upload)."""
+    """One description bullet: do not imply an unconfigured series playlist exists."""
     if url:
         return f"▶ Episode {n} ({TITLES[n]}): {url}"
-    return f"▶ Episode {n} ({TITLES[n]}): सीरीज़ प्लेलिस्ट में → {pl}"
+    label = ('सीरीज़ प्लेलिस्ट में' if pl != PLAYLIST_FALLBACK else
+             'वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर')
+    return f"▶ Episode {n} ({TITLES[n]}): {label} → {pl}"
 
 
 def render_block(n: int, data: dict, args, upto: int | None = None) -> str:
@@ -124,12 +125,12 @@ def main():
     missing = []
     for i in range(1, 10):
         u = resolve(i, data, args)
-        print(f"ep{i:<2}    :", u or f"(not uploaded yet → falls back to playlist)")
+        print(f"ep{i:<2}    :", u or f"(no configured video ID → falls back to playlist)")
         if not u:
             missing.append(i)
     if missing and args.write:
-        print(f"\nnote: ep{missing} not uploaded — descriptions will point at the "
-              f"playlist/channel until you add the IDs to links.json")
+        print(f"\nnote: ep{missing} have no configured video IDs — descriptions will point at the "
+              f"playlist/channel until you add and verify the IDs in links.json")
 
     if not args.write:
         print("\n-- dry run. run with --write to update content/*.md")

@@ -1,7 +1,8 @@
 # Fact-check — video me jo claim hai, uska status
 
-> Rule jo humne follow kiya: **koi statistic gadha mat. Pakka na ho to `[CHECK]`.** Video me humne
-> sirf wahi numbers rakhe jo peer-reviewed papers ya official regulator releases se aate hain.
+> Rule: **koi statistic gadha mat. Pakka na ho to `[CHECK]`.** Observational claims
+> need named sources; hypothetical household arithmetic is explicitly an *example*,
+> not a sourced India-wide rate, guaranteed saving or future return.
 
 | # | Video me claim | Status | Source | Video me kaise dikha |
 |---|---|---|---|---|
@@ -21,6 +22,10 @@
 | 14 | Household financial savings 7.0% GNDI (FY25) | ✅ verified | RBI Annual Report 2025-26 | Series ke baad wale episodes ke liye |
 | 15 | Mutual fund unique investors 6.14 crore (Mar 2026) | ✅ verified | AMFI–CRISIL Factbook 2026 | Future episodes |
 | 16 | SIP flows ₹28,000 crore/month (FY26 Apr–Nov) | ✅ verified | Economic Survey / SEBI speech | Future episodes |
+| 17 | Episode 2's three *illustrative expenses*: ₹500 + ₹4,000 + ₹2,000 monthly | ✅ arithmetic, not a study | ₹6,500 × 12 = **₹78,000/year**; this is spending, not guaranteed savings | Corrected spoken scene, Short, SRT, cards, thumbnail and description |
+| 18 | Episode 2 hook's former “70% खर्च ज़रूरी नहीं था” | ❌ unsourced; **removed** | No household study or calculation supports 70%; it cannot be generalised | Re-recorded hook, cards/captions, title, thumbnail A and description now ask what is necessary, without a percentage |
+| 19 | Madrian & Shea (2001) on automatic 401(k) enrolment, **not** bank-balance-driven daily spending | ✅ scope corrected | QJE 116(4), 1149–1187; automatic/default enrolment and participation | Re-recorded Episode 2 science scene says this is *not* a daily-expenses study |
+| 20 | Prelec & Simester (2001): higher willingness to pay by credit card than cash in an experiment | ✅ limited finding | *Always Leave Home Without It*, *Marketing Letters* 12(1), 5–12; DOI 10.1023/A:1008196717017 | Re-recorded scene says **some participants**, not every buyer or guaranteed savings |
 
 ## Kya video se jaan-boojh kar hata diya
 

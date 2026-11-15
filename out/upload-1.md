@@ -1,10 +1,12 @@
 # Upload sheet — Episode 1
 
-**File:** `out/deep-explains-babylon-niyam-1.mp4`  ·  3:56.00
+**Status:** Locally prepared; no upload performed by this workflow. Verify channel status in Studio. Baked end-screen boxes are not clickable.
+
+**File:** `out/deep-explains-babylon-niyam-1.mp4`  ·  3:56.28
 
 ## Title (copy)
 ```
-
+सैलरी का 10% क्यों गायब? | Richest Man in Babylon Hindi
 ```
 
 ## Description (copy)
@@ -33,7 +35,7 @@ wala example, और वो 3 जगह जहाँ ये नियम FAIL �
 02:52 Karz + skill
 03:09 Galtiyan
 03:28 Takeaway
-03:44 End screen
+03:44 End-screen canvas (Studio clickable elements from 03:45)
 
 ▶ पहले देखें — 30-Day Money Reset Plan (Joseph Murphy, Part 3):
 https://www.youtube.com/watch?v=I97vx1A6qME
@@ -68,10 +70,24 @@ richest man in babylon hindi, richest man in babylon summary, pay yourself first
 Sources: Madrian & Shea, QJE 2001 · Thaler & Benartzi, JPE 2004. Video में कोई fund/scheme recommend नहीं की गई — सिर्फ़ principle और India का example।
 ```
 
-## Studio settings
+## Studio settings — full video
 - Captions: `out/deep-explains-babylon-niyam-1.hi.srt` → Hindi
-- Thumbnail: `out/thumbnail-niyam1-A-1280x720.jpg` (A/B: test B)
-- End screen timer: **03:44** (video length − 12s)
-- Playlist: The Richest Man in Babylon — Hindi
-- Visibility: Public, 7–9 PM IST
-- Not made for kids
+- Thumbnail: `out/thumbnail-A-1280x720.jpg` (B/C alternatives available)
+- End-screen canvas starts at 03:44.20; Studio timer: **03:45** (rounded up; 12s canvas)
+- Left video → existing 30-Day Money Reset Plan (verify in Studio); right video → Episode 2 (when published); circle → Subscribe. Add each in Studio only after the linked video exists.
+- Playlist: The Richest Man in Babylon — Hindi (create and order 1–9 in Studio)
+- Set language Hindi, category Education and the appropriate audience setting in Studio; preview before choosing visibility/schedule.
+
+## Short — separate Studio upload
+- File: `out/short-1.mp4`  ·  21.07s  ·  1080×1920
+- Title: `₹40,000 सैलरी, ₹48,000 बचत कैसे? #Shorts`
+- Description (copy):
+```
+₹40,000/माह की मान ली गई आय से ₹4,000/माह अलग रखने पर 12 महीनों में ₹48,000, बिना रिटर्न। हर किसी के लिए 10% संभव नहीं।
+
+पूरा Episode 1 upload होने पर video link जोड़ें। अभी चैनल का प्लेलिस्ट पेज (सीरीज़ लिंक नहीं): https://www.youtube.com/@DeepExplainsOfficial/playlists
+
+#Shorts #DeepExplains #FinancialLiteracyHindi
+```
+- Add the real full-video URL after uploading it, then add Short to the series playlist if appropriate.
+- Choose a readable in-video frame as the Short cover if your Studio interface offers it. Do not upload the full-video thumbnail as a Short cover by default.

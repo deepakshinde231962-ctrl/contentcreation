@@ -42,7 +42,9 @@ BEATS_AT = (getattr(_mod, "SHORT_BEATS_AT", None)
             or SHORT.get("beats_at"))
 
 FF = __import__("build_video").FF
-WORK = os.path.join(ROOT, "out", "_work")
+# Isolate scratch per Short: another episode cannot leave a cached plate or
+# beat under the same name and contaminate a later render.
+WORK = os.path.join(ROOT, "out", "_work", SHORT["id"])
 W, H = SHORT["width"], SHORT["height"]
 FPS = SHORT["fps"]
 SHORT_PRESET = os.environ.get("DEEP_BUILD_PRESET", "medium")
@@ -143,8 +145,8 @@ def main():
         p = b["image"]
         if p not in plates:
             dst = os.path.join(WORK, "short_plate_" + os.path.basename(p).replace(".png", ".jpg"))
-            if not os.path.exists(dst):
-                plate(os.path.join(ROOT, p)).convert("RGB").save(dst, quality=95)
+            # Regenerate when artwork changes; scratch JPEGs are not a cache key.
+            plate(os.path.join(ROOT, p)).convert("RGB").save(dst, quality=95)
             plates[p] = dst
 
     ovs = []

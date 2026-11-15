@@ -1,5 +1,9 @@
 # Channel Growth Strategy — Deep Explains (Hindi money books)
 
+> **Historical planning draft for the first episode.** The nine release files and current
+> Studio instructions are in `out/release-readiness.md` and `out/upload-{1..9}.md`;
+> the old timing/asset names and sample rollout below are not a live upload status.
+>
 > Ye document aapke channel ke public signals + current YouTube algorithm + 2026 India ke
 > money-content market par based hai. Jahan mujhe aapka private analytics nahi mila, wahan
 > saaf likha hai `[aapka data chahiye]`.
@@ -105,8 +109,8 @@ Isse aap in 3 galtiyon se bachte hain:
 2. **Reused content:** AI voice + AI images + original script = generally safe, par **added value** dikhna
    chahiye (analysis, India numbers, limitations). Isliye har video me "fine print" section rakha hai.
 3. **Financial advice:** koi specific stock/fund/scheme nahi. Disclaimer description me.
-4. **Music:** `assets/music/bed.mp3` is repo me **generate** hota hai (`synth_music_safe`) — koi license nahi.
-5. **Images:** AI-generated; `assets/img/` — koi stock/license issue nahi.
+4. **Music:** current episode mix renders a local synthetic bed; `assets/music/bed.mp3` is an older repository asset. Confirm origin and usage rights before publication; generation alone does not guarantee claim-free use.
+5. **Images/voice/fonts:** locally stored generated art and narration still need a pre-publish terms/licence review for the intended channel and monetisation; do not assume "AI-generated" means no rights issue.
 
 ---
 
