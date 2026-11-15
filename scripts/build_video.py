@@ -60,6 +60,10 @@ def ffmpeg_exe() -> str:
 
 
 FF = ffmpeg_exe()
+# Ep6–9 can opt into faster scratch renders and a small upload-ready H.264
+# final without changing earlier episodes' default output settings.
+BUILD_PRESET = os.environ.get("DEEP_BUILD_PRESET", "medium")
+COMPACT = os.environ.get("DEEP_COMPACT", "") == "1"
 
 
 def run(cmd: list[str], quiet=True):
@@ -472,7 +476,7 @@ def render_scene(idx: int, sc: dict) -> str:
              "-t", f"{dur:.3f}", "-vf",
              f"scale=2688:-2,zoompan={motion_expr(sc['motion'], frames)}:d={frames}:"
              f"s={WIDTH}x{HEIGHT}:fps={FPS},format=yuv420p",
-             "-c:v", "libx264", "-preset", "medium", "-crf", "20", base_mp4])
+             "-c:v", "libx264", "-preset", BUILD_PRESET, "-crf", "20", base_mp4])
     else:
         seg_files = []
         for si, (a, b) in enumerate(segs):
@@ -488,7 +492,7 @@ def render_scene(idx: int, sc: dict) -> str:
                  f"scale=3100:-2,zoompan={expr}:d={n}:s={WIDTH}x{HEIGHT}:fps={FPS},"
                  f"eq=brightness={0.035 if tighter else -0.012}:"
                  f"saturation={1.06 if tighter else 0.98},format=yuv420p",
-                 "-c:v", "libx264", "-preset", "medium", "-crf", "20", out_seg])
+                 "-c:v", "libx264", "-preset", BUILD_PRESET, "-crf", "20", out_seg])
             seg_files.append(out_seg)
         seg_list = os.path.join(WORK, f"seglist_{idx + 1:02d}.txt")
         with open(seg_list, "w") as f:
@@ -511,7 +515,7 @@ def render_scene(idx: int, sc: dict) -> str:
     chain.append(f"[{last}]format=yuv420p[v]")
     scn_mp4 = os.path.join(WORK, f"scene_{idx + 1:02d}_{sid}.mp4")
     args += ["-filter_complex", ";".join(chain), "-map", "[v]",
-             "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-pix_fmt", "yuv420p", scn_mp4]
+             "-c:v", "libx264", "-preset", BUILD_PRESET, "-crf", "19", "-pix_fmt", "yuv420p", scn_mp4]
     run(args)
     return scn_mp4, ndur, scn_mp4
 
@@ -759,10 +763,15 @@ def mix_final(joined: str, out_rel: str) -> str:
 
     final = os.path.join(ROOT, out_rel)
     os.makedirs(os.path.dirname(final), exist_ok=True)
-    run(cmd + ["-filter_complex", ";".join(chains), "-map", "0:v", "-map", "[aout]",
-               "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000",
-               "-t", f"{total_dur:.3f}",
-               "-movflags", "+faststart", final])
+    # The earlier episodes copied the intermediate video bitstream, which is
+    # ~66 MB for four minutes. A compact final H.264 encode stays at 1080p and
+    # makes shipping four additional finished episodes practical in Git.
+    video_args = (["-c:v", "libx264", "-preset", "medium", "-crf", "26",
+                   "-pix_fmt", "yuv420p"] if COMPACT else ["-c:v", "copy"])
+    run(cmd + ["-filter_complex", ";".join(chains), "-map", "0:v", "-map", "[aout]"]
+        + video_args + ["-c:a", "aac", "-b:a", "192k", "-ar", "48000",
+                        "-t", f"{total_dur:.3f}",
+                        "-movflags", "+faststart", final])
     print("WROTE", final, f"{total_dur:.1f}s")
     return final
 

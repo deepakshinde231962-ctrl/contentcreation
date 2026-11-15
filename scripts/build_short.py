@@ -45,6 +45,8 @@ FF = __import__("build_video").FF
 WORK = os.path.join(ROOT, "out", "_work")
 W, H = SHORT["width"], SHORT["height"]
 FPS = SHORT["fps"]
+SHORT_PRESET = os.environ.get("DEEP_BUILD_PRESET", "medium")
+SHORT_CRF = "23" if os.environ.get("DEEP_COMPACT") == "1" else "19"
 SAFE_TOP, SAFE_BOTTOM = 220, 240  # Shorts UI: title/likes bottom, channel top
 
 
@@ -172,7 +174,7 @@ def main():
                         f"[0:v]scale={int(W*1.35)}:-2,zoompan={expr}:d={frames}:"
                         f"s={W}x{H}:fps={FPS},scale=in_range=full:out_range=tv,format=yuv420p[bg];[bg][1:v]overlay=0:0:format=auto,format=yuv420p[v]",
                         "-map", "[v]", "-t", f"{dur:.3f}", "-r", str(FPS),
-                        "-c:v", "libx264", "-preset", "medium", "-crf", "19", out], check=True)
+                        "-c:v", "libx264", "-preset", SHORT_PRESET, "-crf", SHORT_CRF, out], check=True)
         clips.append(out)
 
     lst = os.path.join(WORK, "short_concat.txt")
@@ -191,8 +193,8 @@ def main():
                     "attack=8:release=180:makeup=2,adelay=1200|1200[n];"
                     "[n]loudnorm=I=-14:TP=-1.5:LRA=9,aresample=48000,"
                     "aformat=sample_fmts=fltp:channel_layouts=stereo[a]",
-                    "-map", "0:v", "-map", "[a]", "-c:v", "libx264", "-preset", "medium",
-                    "-crf", "19", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
+                    "-map", "0:v", "-map", "[a]", "-c:v", "libx264", "-preset", SHORT_PRESET,
+                    "-crf", SHORT_CRF, "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
                     "-shortest", "-movflags", "+faststart", final], check=True)
     print("WROTE", final, f"{total:.1f}s")
 

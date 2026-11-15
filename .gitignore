@@ -1,6 +1,8 @@
 # rendered working files (large, reproducible)
 out/_work/
 out/stills/
+# Ep6–9 thumbnail JPGs are the upload assets; regenerable PNGs stay local.
+out/thumbnail-niyam[6-9]-*-1280x720.png
 __pycache__/
 *.pyc
 .DS_Store
