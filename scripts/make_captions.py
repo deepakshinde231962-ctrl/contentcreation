@@ -38,13 +38,13 @@ def ts(sec: float) -> str:
     s = int(sec % 60)
     ms = int(round((sec - int(sec)) * 1000))
     if ms == 1000:
-        s, ms = s + 1, 0
+        return ts(int(sec) + 1.0)
     return f"{h:02d}:{m:02d}:{s:02d},{ms:03d}"
 
 
 def main():
     path = os.path.join(ROOT, _a.out) if _a.out else os.path.join(
-        ROOT, f"out/{B.EPISODE_SLUG}.hi.srt" if _a.episode else "out/deep-explains-babylon-niyam-1.hi.srt")
+        ROOT, f"out/deep-explains-{B.EPISODE_SLUG}.hi.srt")
     t0 = 0.0
     i = 0
     blocks = []

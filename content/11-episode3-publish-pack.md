@@ -9,7 +9,7 @@
 | `out/thumbnail-niyam3-A-1280x720.jpg` | *"10 साल देर / = लाखों?"* — time-cost |
 | `out/thumbnail-niyam3-B-1280x720.jpg` | *"₹5,000 / से क्या?"* — compounding |
 | `out/thumbnail-niyam3-C-1280x720.jpg` | *"'गारंटीड' / धोखा?"* — risk frame |
-| `out/short-3.mp4` | 17.6s vertical Short |
+| `out/short-3.mp4` | 17.7s vertical Short |
 
 ---
 
@@ -54,10 +54,10 @@ The Richest Man in Babylon (1926) का Niyam 3: बचत को काम प
 02:32 Sameeksha + badhne do
 02:52 Common galtiyan
 03:09 Takeaway + next video
-03:28 End screen
+03:28 End-screen canvas (Studio clickable elements from 03:29)
 
-▶ Episode 2 (ख़र्चे काबू में): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 1 (पहले खुद को दो): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 2 (ख़र्चे काबू में): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 1 (पहले खुद को दो): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
 
 📚 Sources
 • George S. Clason, The Richest Man in Babylon (1926) — Niyam 3 & 4, public domain
@@ -101,7 +101,7 @@ Video में कोई fund/scheme recommend नहीं की गई — �
 - [ ] Public, 7–9 PM IST
 - [ ] Playlist: **The Richest Man in Babylon — Hindi** (Episode 3)
 - [ ] Captions: `out/deep-explains-babylon-niyam-3.hi.srt`
-- [ ] End screen: timer **`03:28`**
+- [ ] End screen: canvas starts 03:28.88; Studio timer **`03:29`**
   - Right → **Niyam 4: पैसा बचाओ, खो मत दो**
   - Left → **Niyam 2: ख़र्चे काबू में**
 - [ ] **Episode 2 ka end screen update karo** → right card ab Niyam 3
@@ -115,5 +115,5 @@ Video में कोई fund/scheme recommend नहीं की गई — �
 | Episode | Length | End screen right | End screen left |
 |---|---|---|---|
 | 1 — पहले खुद को दो | 3:56 | **Niyam 2** | 30-Day Money Reset |
-| 2 — ख़र्चे काबू में | 3:32 | **Niyam 3** | Niyam 1 |
+| 2 — ख़र्चे काबू में | 3:38.44 | **Niyam 3** | Niyam 1 |
 | 3 — पैसा पैसा कमाए | 3:41 | **Niyam 4** | Niyam 2 |

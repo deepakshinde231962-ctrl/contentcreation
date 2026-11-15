@@ -10,8 +10,8 @@ need channel access; the baked end-screen canvas by itself is not clickable.
 | Episode | Theme | Final video | Short | SRT | Thumbnails |
 |---|---|---|---|---|---|
 | 1 | पहले खुद को दो | 3:56 · `out/deep-explains-babylon-niyam-1.mp4` | `out/short-1.mp4` | `out/deep-explains-babylon-niyam-1.hi.srt` | `out/thumbnail-{A,B,C}-1280x720.jpg` |
-| 2 | ख़र्चे काबू में | 3:32 · `out/deep-explains-babylon-niyam-2.mp4` | `out/short-2.mp4` | `out/deep-explains-babylon-niyam-2.hi.srt` | `out/thumbnail-niyam2-{A,B,C}-1280x720.jpg` |
-| 3 | पैसा पैसा कमाए | 3:41 · `out/deep-explains-babylon-niyam-3.mp4` | `out/short-3.mp4` | `out/deep-explains-babylon-niyam-3.hi.srt` | `out/thumbnail-niyam3-{A,B,C}-1280x720.jpg` |
+| 2 | ख़र्चे काबू में | 3:38.44 · `out/deep-explains-babylon-niyam-2.mp4` | `out/short-2.mp4` | `out/deep-explains-babylon-niyam-2.hi.srt` | `out/thumbnail-niyam2-{A,B,C}-1280x720.jpg` |
+| 3 | पैसा पैसा कमाए | 3:40.88 · `out/deep-explains-babylon-niyam-3.mp4` | `out/short-3.mp4` | `out/deep-explains-babylon-niyam-3.hi.srt` | `out/thumbnail-niyam3-{A,B,C}-1280x720.jpg` |
 | 4 | पैसा बचाओ, खो मत दो | 3:38 · `out/deep-explains-babylon-niyam-4.mp4` | `out/short-4.mp4` | `out/deep-explains-babylon-niyam-4.hi.srt` | `out/thumbnail-niyam4-{A,B,C}-1280x720.jpg` |
 | 5 | कर्ज़ से आज़ादी (दबासीर) | 3:59.96 · `out/deep-explains-babylon-niyam-5.mp4` | `out/short-5.mp4` | `out/deep-explains-babylon-niyam-5.hi.srt` | `out/thumbnail-niyam5-{A,B,C}-1280x720.jpg` |
 | 6 | घर: ख़र्च या निवेश? | 3:46.40 · `out/deep-explains-babylon-niyam-6.mp4` | `out/short-6.mp4` · 29.3s | `out/deep-explains-babylon-niyam-6.hi.srt` · 65 cues | `out/thumbnail-niyam6-{A,B,C}-1280x720.jpg` |
@@ -39,7 +39,8 @@ Shorts: 1080×1920/30 fps with the same palette and original narrations.
   — title options, sources, chapters, disclaimers, Short ideas and end-screen instructions.
 - `out/upload-{1,2,3,4,5,6,7,8,9}.md` — one-page paste-ready sheet per finished episode
   (title, description, tags, pinned comment, captions and exact end-screen timer).
-- `content/07-end-screen.md` — clickable element positions and Studio setup.
+- `content/07-end-screen.md` — nine exact Studio start times, visual positions and honest interactive setup.
+- `out/release-readiness.md` — generated nine-episode local media audit and the actions still requiring a channel owner.
 - `content/03-series-plan.md`, `content/04-channel-strategy.md` — rollout, measurement,
   and monetisation/policy safeguards.
 
@@ -51,8 +52,10 @@ can supply real IDs after upload. Source clips/assets and the video deliverables
 ## Build / verify
 
 ```bash
-python3 -m pip install pillow numpy scipy imageio-ffmpeg
+python3 -m venv .venv && . .venv/bin/activate
+python3 -m pip install -r requirements.txt
 python3 -m unittest discover -s tests -v
+python3 scripts/check_release.py  # verifies all nine local video/Short/SRT/thumbnail/upload packs
 
 # Episode 5 — other episodes use episode02.py ... episode04.py
 python3 scripts/build_video.py --episode video/episode05.py --stills
@@ -73,10 +76,14 @@ DEEP_BUILD_PRESET=veryfast DEEP_COMPACT=1 python3 scripts/build_short.py --short
 python3 scripts/build_remaining_docs.py 6
 python3 scripts/publish.py 6
 
-# Optional: point a specific episode to its real uploaded YouTube ID
-EP4_ID=YOUR_UPLOADED_VIDEO_ID python3 scripts/publish.py 5
-# or set links.json locally from links.example.json, then:
-python3 scripts/make_links.py --block 5
+# Offline paste-ready sheets for BOTH each full video and its Short:
+python3 scripts/publish.py --all
+python3 scripts/check_release.py
+
+# AFTER actual channel upload, add real IDs locally (never invent or commit them):
+cp links.example.json links.json  # fill ep1..ep9 and playlist only when real
+python3 scripts/publish.py --all  # replace playlist fallback links
+python3 scripts/make_links.py --block 5  # inspect prior-episode links
 ```
 
 Episodes 6–9 use `video/remaining_content.py` (exact script) and
@@ -84,8 +91,10 @@ Episodes 6–9 use `video/remaining_content.py` (exact script) and
 wrapped by `video/episode0N.py`. `assets/audio/epN/narr_*.mp3` contains one spoken
 clip per scene. The same timing source drives burned captions and external `.srt`;
 `video/remaining_shorts.py` aligns the vertical beats to those clips. `out/_work/`
-contains *ignored temporary TTS halves*; the committed scene MP3s and art are enough
-to reproduce finished videos locally. All art uses generated stills; music is
+contains **episode-specific ignored render scratch** and temporary TTS recordings;
+the committed scene MP3s and art are enough to reproduce finished videos locally.
+QA stills live separately in `out/stills/babylon-niyam-N/` so episodes cannot
+accidentally share stale cards. All art uses generated stills; music is
 synthesized by the renderer, not taken from a commercial track.
 Typography uses Pillow/libraqm for Devanagari shaping; video assembly uses `imageio-ffmpeg`.
 
@@ -107,7 +116,7 @@ Sources and disclaimers are in `content/14-episode5-publish-pack.md`.
 ## Series roadmap
 
 1. पहले खुद को दो ✅
-2. ख़र्चे काबू में ✅
+2. ख़र्चे काबू में ✅ · ₹6,500/माह = ₹78,000/साल **खर्च का उदाहरण**, न कि बचत का वादा · 70% का असमर्थित दावा और गलत research attribution हटाए · 3:38.44 + 19.2s Short
 3. पैसा पैसा कमाए ✅
 4. पैसा बचाओ, खो मत दो ✅
 5. कर्ज़ से आज़ादी (दबासीर) ✅ · 3:59.96 · Short 25.6s · 40-cue SRT · 3 thumbnails

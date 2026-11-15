@@ -1,6 +1,8 @@
 # Upload sheet — Episode 4
 
-**File:** `out/deep-explains-babylon-niyam-4.mp4`  ·  3:38.00
+**Status:** Locally prepared; no upload performed by this workflow. Verify channel status in Studio. Baked end-screen boxes are not clickable.
+
+**File:** `out/deep-explains-babylon-niyam-4.mp4`  ·  3:38.84
 
 ## Title (copy)
 ```
@@ -30,11 +32,11 @@
 02:28 Teen sawaal + saal ki sameeksha
 02:51 Common galtiyan
 03:07 Takeaway + next video
-03:26 End screen
+03:26 End-screen canvas (Studio clickable elements from 03:27)
 
-▶ Episode 3 (पैसा पैसा कमाए): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 2 (ख़र्चे काबू में): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 1 (पहले खुद को दो): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 3 (पैसा पैसा कमाए): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 2 (ख़र्चे काबू में): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 1 (पहले खुद को दो): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
 
 📚 Sources
 • George S. Clason, The Richest Man in Babylon (1926) — Niyam 4, public domain
@@ -64,10 +66,24 @@ richest man in babylon hindi, niyam 4, paisa bachao, investment fraud hindi, gua
 Video में कोई fund/scheme recommend नहीं की गई। SEBI का आँकड़ा Press Release 22/2024 से है।
 ```
 
-## Studio settings
+## Studio settings — full video
 - Captions: `out/deep-explains-babylon-niyam-4.hi.srt` → Hindi
-- Thumbnail: `out/thumbnail-niyam4-A-1280x720.jpg` (A/B: test B)
-- End screen timer: **03:26** (video length − 12s)
-- Playlist: The Richest Man in Babylon — Hindi
-- Visibility: Public, 7–9 PM IST
-- Not made for kids
+- Thumbnail: `out/thumbnail-niyam4-A-1280x720.jpg` (B/C alternatives available)
+- End-screen canvas starts at 03:26.76; Studio timer: **03:27** (rounded up; 12s canvas)
+- Left video → Episode 3; right video → Episode 5 (when published); circle → Subscribe. Add each in Studio only after the linked video exists.
+- Playlist: The Richest Man in Babylon — Hindi (create and order 1–9 in Studio)
+- Set language Hindi, category Education and the appropriate audience setting in Studio; preview before choosing visibility/schedule.
+
+## Short — separate Studio upload
+- File: `out/short-4.mp4`  ·  17.93s  ·  1080×1920
+- Title: `'गारंटीड 4% महीना' — सच या धोखा? #Shorts`
+- Description (copy):
+```
+'हर महीने 4% गारंटीड' जैसे वादे पर जल्दबाज़ी मत करो। ₹50,000 से लगभग ₹80,000 दिखाना सिर्फ़ चक्रवृद्धि गणित है, सुरक्षित या असली ऑफ़र नहीं।
+
+पूरा Episode 4 upload होने पर video link जोड़ें। अभी चैनल का प्लेलिस्ट पेज (सीरीज़ लिंक नहीं): https://www.youtube.com/@DeepExplainsOfficial/playlists
+
+#Shorts #DeepExplains #FinancialLiteracyHindi
+```
+- Add the real full-video URL after uploading it, then add Short to the series playlist if appropriate.
+- Choose a readable in-video frame as the Short cover if your Studio interface offers it. Do not upload the full-video thumbnail as a Short cover by default.

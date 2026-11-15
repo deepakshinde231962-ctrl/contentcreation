@@ -1,5 +1,7 @@
 # Upload sheet — Episode 5
 
+**Status:** Locally prepared; no upload performed by this workflow. Verify channel status in Studio. Baked end-screen boxes are not clickable.
+
 **File:** `out/deep-explains-babylon-niyam-5.mp4`  ·  3:59.96
 
 ## Title (copy)
@@ -37,10 +39,10 @@ The Richest Man in Babylon की काल्पनिक कहानी म�
 03:30 Takeaway + अगली कहानी
 03:47 End screen
 
-▶ Episode 4 (पैसा बचाओ, खो मत दो): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 3 (पैसा पैसा कमाए): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 2 (ख़र्चे काबू में): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 1 (पहले खुद को दो): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 4 (पैसा बचाओ, खो मत दो): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 3 (पैसा पैसा कमाए): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 2 (ख़र्चे काबू में): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 1 (पहले खुद को दो): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
 
 📚 Sources
 • George S. Clason, The Richest Man in Babylon, Chapter 8 (story): https://en.wikisource.org/wiki/The_Richest_Man_In_Babylon/Chapter_8
@@ -77,10 +79,24 @@ richest man in babylon hindi, dabasir hindi, karz se azaadi, credit card minimum
 आपके हिसाब में सबसे मुश्किल चीज़ क्या है — बकाया लिखना, दर समझना या बैंक से बात करना? निजी खाता जानकारी यहाँ न लिखें।
 ```
 
-## Studio settings
+## Studio settings — full video
 - Captions: `out/deep-explains-babylon-niyam-5.hi.srt` → Hindi
-- Thumbnail: `out/thumbnail-niyam5-A-1280x720.jpg` (A/B: test B)
-- End screen timer: **03:48** (last 12s, rounded up to a whole second)
-- Playlist: The Richest Man in Babylon — Hindi
-- Visibility: Public, 7–9 PM IST
-- Not made for kids
+- Thumbnail: `out/thumbnail-niyam5-A-1280x720.jpg` (B/C alternatives available)
+- End-screen canvas starts at 03:47.88; Studio timer: **03:48** (rounded up; 12s canvas)
+- Left video → Episode 4; right video → Episode 6 (when published); circle → Subscribe. Add each in Studio only after the linked video exists.
+- Playlist: The Richest Man in Babylon — Hindi (create and order 1–9 in Studio)
+- Set language Hindi, category Education and the appropriate audience setting in Studio; preview before choosing visibility/schedule.
+
+## Short — separate Studio upload
+- File: `out/short-5.mp4`  ·  25.60s  ·  1080×1920
+- Title: `₹3,000 दिए, कार्ड का कर्ज़ ₹900 ही घटा? #Shorts`
+- Description (copy):
+```
+₹60,000 कार्ड बकाया और 3.5% मासिक दर सिर्फ़ मानकर: पहले महीने ₹2,100 ब्याज, ₹3,000 भुगतान में ₹900 मूलधन। असली कार्ड पर शुल्क, टैक्स और तारीख़ बदलेंगे।
+
+पूरा Episode 5 upload होने पर video link जोड़ें। अभी चैनल का प्लेलिस्ट पेज (सीरीज़ लिंक नहीं): https://www.youtube.com/@DeepExplainsOfficial/playlists
+
+#Shorts #DeepExplains #FinancialLiteracyHindi
+```
+- Add the real full-video URL after uploading it, then add Short to the series playlist if appropriate.
+- Choose a readable in-video frame as the Short cover if your Studio interface offers it. Do not upload the full-video thumbnail as a Short cover by default.

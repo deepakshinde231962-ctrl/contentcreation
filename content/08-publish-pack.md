@@ -17,9 +17,9 @@
 
 **Primary (recommended):**
 ```
-सैलरी का 10% क्यों गायब हो जाता है? | Richest Man in Babylon Hindi
+सैलरी का 10% क्यों गायब? | Richest Man in Babylon Hindi
 ```
-(58 chars — aapke `… ? | Joseph Murphy Hindi` pattern me, par book Roman me taaki search me mile.)
+(55 chars — aapke `… ? | Joseph Murphy Hindi` pattern me, par book Roman me taaki search me mile.)
 
 **B variants (Test & Compare me daalo):**
 - `अमीर बनने का पहला नियम — क्या ये सच में काम करता है?` (52)
@@ -63,7 +63,7 @@ wala example, और वो 3 जगह जहाँ ये नियम FAIL �
 02:52 Karz + skill
 03:09 Galtiyan
 03:28 Takeaway
-03:44 End screen
+03:44 End-screen canvas (Studio clickable elements from 03:45)
 
 ▶ पहले देखें — 30-Day Money Reset Plan (Joseph Murphy, Part 3):
 https://www.youtube.com/watch?v=I97vx1A6qME
@@ -112,11 +112,11 @@ Sources: Madrian & Shea, QJE 2001 · Thaler & Benartzi, JPE 2004. Video मे�
 - [ ] Playlist: **The Richest Man in Babylon — Hindi**
 - [ ] Audience: **Not made for kids**
 - [ ] **Captions:** `out/deep-explains-babylon-niyam-1.hi.srt` upload → language **Hindi**
-- [ ] **End screen:** `content/07-end-screen.md` ke coordinates se 3 elements
+- [ ] **End screen:** canvas starts 03:44.20; add 3 real Studio elements from **03:45** using `content/07-end-screen.md`
 - [ ] **Cards:** 00:23 par playlist card (optional)
 - [ ] **Thumbnail:** A ya B (Test & Compare me dono)
 - [ ] Language: Hindi; Title & description me Roman/Hindi mix (aapke channel jaisa)
-- [ ] Monetisation: koi copyrighted music/image nahi (music repo me generate hota hai)
+- [ ] Monetisation: channel owner verifies intended-use rights for generated voice/art, fonts and synthetic music; generation alone does not establish clearance
 
 ---
 

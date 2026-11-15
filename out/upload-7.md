@@ -1,5 +1,7 @@
 # Upload sheet — Episode 7
 
+**Status:** Locally prepared; no upload performed by this workflow. Verify channel status in Studio. Baked end-screen boxes are not clickable.
+
 **File:** `out/deep-explains-babylon-niyam-7.mp4`  ·  3:55.88
 
 ## Title (copy)
@@ -26,12 +28,12 @@ The Richest Man in Babylon की मूल कथा को अपने शब
 03:20 Takeaway + अगली कड़ी
 03:43 End-screen canvas (Studio में cards लगाने होंगे)
 
-▶ Episode 6 (घर: खर्च या निवेश?): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 5 (कर्ज़ से आज़ादी): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 4 (पैसा बचाओ, खो मत दो): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 3 (पैसा पैसा कमाए): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 2 (ख़र्चे काबू में): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
-▶ Episode 1 (पहले खुद को दो): सीरीज़ प्लेलिस्ट में → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 6 (घर: खर्च या निवेश?): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 5 (कर्ज़ से आज़ादी): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 4 (पैसा बचाओ, खो मत दो): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 3 (पैसा पैसा कमाए): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 2 (ख़र्चे काबू में): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
+▶ Episode 1 (पहले खुद को दो): वीडियो लिंक मिलने तक चैनल के प्लेलिस्ट पेज पर → https://www.youtube.com/@DeepExplainsOfficial/playlists
 
 📚 Sources
 • George S. Clason, *The Richest Man in Babylon*, Chapter 3, sixth cure (future income, not a modern scheme): https://en.wikisource.org/wiki/The_Richest_Man_In_Babylon/Chapter_3
@@ -56,10 +58,24 @@ richest man in babylon hindi, retirement planning hindi, future income, inflatio
 ₹30,000 × 1.06^25 ≈ ₹1.29 लाख/माह एक काल्पनिक महँगाई गणित है, भविष्यवाणी नहीं। आपके परिवार की तैयारी में किस बात का हिसाब छूटता है? निजी वित्तीय जानकारी न लिखें।
 ```
 
-## Studio settings
+## Studio settings — full video
 - Captions: `out/deep-explains-babylon-niyam-7.hi.srt` → Hindi
-- Thumbnail: `out/thumbnail-niyam7-A-1280x720.jpg` (A/B: test B)
-- End screen timer: **03:44** (last 12s, rounded up to a whole second)
-- Playlist: The Richest Man in Babylon — Hindi
-- Visibility: Public, 7–9 PM IST
-- Not made for kids
+- Thumbnail: `out/thumbnail-niyam7-A-1280x720.jpg` (B/C alternatives available)
+- End-screen canvas starts at 03:43.87; Studio timer: **03:44** (rounded up; 12s canvas)
+- Left video → Episode 6; right video → Episode 8 (when published); circle → Subscribe. Add each in Studio only after the linked video exists.
+- Playlist: The Richest Man in Babylon — Hindi (create and order 1–9 in Studio)
+- Set language Hindi, category Education and the appropriate audience setting in Studio; preview before choosing visibility/schedule.
+
+## Short — separate Studio upload
+- File: `out/short-7.mp4`  ·  26.50s  ·  1080×1920
+- Title: `₹30,000 का खर्च 25 साल बाद कितना? #Shorts`
+- Description (copy):
+```
+₹30,000 आज के मासिक खर्च पर 25 साल तक 6% सालाना महँगाई केवल मानकर लगभग ₹1.29 लाख/माह। यह भविष्यवाणी या किसी उत्पाद का रिटर्न नहीं।
+
+पूरा Episode 7 upload होने पर video link जोड़ें। अभी चैनल का प्लेलिस्ट पेज (सीरीज़ लिंक नहीं): https://www.youtube.com/@DeepExplainsOfficial/playlists
+
+#Shorts #DeepExplains #FinancialLiteracyHindi
+```
+- Add the real full-video URL after uploading it, then add Short to the series playlist if appropriate.
+- Choose a readable in-video frame as the Short cover if your Studio interface offers it. Do not upload the full-video thumbnail as a Short cover by default.

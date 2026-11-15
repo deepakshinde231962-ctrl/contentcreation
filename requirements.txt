@@ -1,0 +1,7 @@
+# Rendering, thumbnails, media probes and release checks (Python 3.11+).
+# Known working in this repository: Pillow 12.3.0, numpy 2.4.6,
+# scipy 1.17.1 and imageio-ffmpeg 0.8.1.
+Pillow>=10.4,<13
+numpy>=1.24,<3
+scipy>=1.10,<2
+imageio-ffmpeg>=0.5,<1

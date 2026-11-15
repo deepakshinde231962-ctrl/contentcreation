@@ -10,7 +10,7 @@ Har episode ka structure (fixed):
 | # | Episode | What the actual episode covers | Indian illustration | Repo status |
 |---|---|---|---|---|
 | 1 | **पहले खुद को दो** | पहले बचत; सीमा और सुधार | ₹40,000 की काल्पनिक कमाई | Video + Short ready |
-| 2 | **ख़र्चे काबू में** | ज़रूरत बनाम आदत | सब्सक्रिप्शन/खर्च का audit | Video + Short ready |
+| 2 | **ख़र्चे काबू में** | ज़रूरत बनाम आदत | मान लिए गए ₹500 + ₹4,000 + ₹2,000 प्रति माह = ₹6,500/माह × 12 = ₹78,000/साल के खर्च; बचत का वादा नहीं | Video + Short ready |
 | 3 | **पैसा पैसा कमाए** | समय, compounding और जोखिम | काल्पनिक monthly savings | Video + Short ready |
 | 4 | **पैसा बचाओ, खो मत दो** | नुकसान और धोखे से बचना | स्रोत दिए गए उदाहरण | Video + Short ready |
 | 5 | **कर्ज़ से आज़ादी (दबासीर)** | कर्ज़ पर किताब का 10/20/70 तरीका और आज की सीमाएँ | ₹60,000 कार्ड बकाया, 3.5%/माह सिर्फ़ अनुमान | Video + Short ready |
@@ -62,7 +62,7 @@ Aapke maujooda 4 videos ka pattern (public feed se):
 
 | Pehlu | Aapka pattern | Is episode me kya kiya |
 |---|---|---|
-| Title | `सवाल? | Joseph Murphy Hindi` (Roman/Sanskrit mix, question) | `सैलरी का 10% क्यों गायब हो जाता है?` — wahi question format, Roman suffix `| Richest Man in Babylon Hindi` |
+| Title | `सवाल? | Joseph Murphy Hindi` (Roman/Sanskrit mix, question) | `सैलरी का 10% क्यों गायब?` — wahi question format, Roman suffix `| Richest Man in Babylon Hindi` |
 | Description | Intro line → bullet list "इस वीडियो में" → links to previous parts → disclaimer → comment CTA | Same skeleton, plus timestamps + sources (trust) |
 | Disclaimer | "यह personalised investment/credit advice नहीं है…" | Same tone, same place (before CTA) |
 | Comment CTA | "आज आप क्या शुरू करेंगे…? कमेंट में बताएं" | "आपकी salary का कितना % agle din auto-transfer hota hai? Number likh do" |

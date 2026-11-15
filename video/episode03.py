@@ -16,7 +16,7 @@ EPISODE = dict(
     audio_dir="ep3",
     next_episode=dict(kicker="NEXT · EPISODE 4",
                       title="Niyam 4: पैसा बचाओ, खो मत दो", meta="~4 min · Hindi"),
-    prev_video=dict(kicker="पहले देखें", title="Niyam 2: ख़र्चे काबू में", meta="Episode 2 · 3:32"),
+    prev_video=dict(kicker="पहले देखें", title="Niyam 2: ख़र्चे काबू में", meta="Episode 2 · 3:38"),
     scenes=[
         dict(
             id="hook",
