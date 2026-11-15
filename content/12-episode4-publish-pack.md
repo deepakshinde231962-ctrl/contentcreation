@@ -117,7 +117,7 @@ Video में कोई fund/scheme recommend नहीं की गई। SE
 | 1 — पहले खुद को दो | 3:56 | Niyam 2 | 30-Day Money Reset |
 | 2 — ख़र्चे काबू में | 3:38.44 | Niyam 3 | Niyam 1 |
 | 3 — पैसा पैसा कमाए | 3:41 | Niyam 4 | Niyam 2 |
-| **4 — पैसा बचाओ** | **3:38** | Niyam 5 | Niyam 3 |
+| **4 — पैसा बचाओ** | **3:38.84** | Niyam 5 | Niyam 3 |
 
 > End-screen cards baked-in hain, isliye "update" ka matlab: naya render nahi,
 > Studio me end-screen element ka **video/link** badalna. Frame wahi rehta hai.

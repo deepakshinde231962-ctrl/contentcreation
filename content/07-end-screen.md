@@ -31,7 +31,7 @@ chapter timestamp. `scripts/publish.py` computes this from recorded voice clips.
 | 2 | 03:38.44 | 03:26.44 | **03:27** | Episode 1 | Episode 3, after upload |
 | 3 | 03:40.88 | 03:28.88 | **03:29** | Episode 2 | Episode 4, after upload |
 | 4 | 03:38.84 | 03:26.76 | **03:27** | Episode 3 | Episode 5, after upload |
-| 5 | 03:59.96 | 03:47.88 | **03:48** | Episode 4 | Episode 6, after upload |
+| 5 | 03:59.88 | 03:47.88 | **03:48** | Episode 4 | Episode 6, after upload |
 | 6 | 03:46.40 | 03:34.37 | **03:35** | Episode 5 | Episode 7, after upload |
 | 7 | 03:55.88 | 03:43.87 | **03:44** | Episode 6 | Episode 8, after upload |
 | 8 | 03:43.40 | 03:31.40 | **03:32** | Episode 7 | Episode 9, after upload |

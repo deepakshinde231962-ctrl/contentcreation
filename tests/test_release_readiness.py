@@ -74,6 +74,39 @@ class ReleaseReadinessTests(unittest.TestCase):
         self.assertEqual(ep3.EPISODE['prev_video']['meta'],
                          f'Episode 2 · {rounded // 60}:{rounded % 60:02d}')
 
+    def test_bundled_font_license_notices(self):
+        families = {'Baloo2': ('Baloo2-Variable.ttf', 'The Baloo 2 Project Authors'),
+                    'Hind': ('Hind-Regular.ttf', 'Indian Type Foundry'),
+                    'Mukta': ('Mukta-Bold.ttf', 'Girish Dalvi')}
+        for family, (font_name, copyright_name) in families.items():
+            with self.subTest(font=family):
+                self.assertTrue((ROOT / 'assets/fonts' / font_name).is_file())
+                notice = (ROOT / 'assets/fonts' / f'LICENSE-{family}-OFL.txt').read_text()
+                self.assertIn('SIL OPEN FONT LICENSE Version 1.1', notice)
+                self.assertIn(copyright_name, notice)
+
+    def test_upload_media_manifest_is_complete_and_matches_files(self):
+        from make_release_manifest import MANIFEST, check, paths
+        self.assertEqual(len(paths()), 9 * 6)
+        self.assertEqual(len(set(paths())), 9 * 6)
+        self.assertEqual(check(), [])
+        manifest = MANIFEST.read_text(encoding='utf-8')
+        for ep in range(1, 10):
+            self.assertNotIn(f'out/upload-{ep}.md', manifest)
+
+    def test_numeric_end_screen_labels_match_actual_previous_video(self):
+        # Episodes 6–9 deliberately use the approximate "~4 min" label.
+        for ep in range(2, 6):
+            with self.subTest(episode=ep):
+                spec = importlib.util.spec_from_file_location(
+                    f'previous_video_label_{ep}', ROOT / f'video/episode{ep:02d}.py')
+                module = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(module)
+                previous = round(probe_dur(str(
+                    ROOT / f'out/deep-explains-babylon-niyam-{ep - 1}.mp4')))
+                self.assertEqual(module.EPISODE['prev_video']['meta'],
+                                 f'Episode {ep - 1} · {previous // 60}:{previous % 60:02d}')
+
     def test_episode2_does_not_present_unsourced_70_percent_or_misattributed_research(self):
         spec = importlib.util.spec_from_file_location('episode2_factcheck', ROOT / 'video/episode02.py')
         mod = importlib.util.module_from_spec(spec)

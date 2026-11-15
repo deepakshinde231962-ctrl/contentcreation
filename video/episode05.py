@@ -22,7 +22,7 @@ EPISODE = dict(
     next_episode=dict(kicker="NEXT · EPISODE 6", title="घर: ख़र्च या निवेश?",
                       meta="~4 min · Hindi"),
     prev_video=dict(kicker="पहले देखें", title="Episode 4: पैसा बचाओ",
-                    meta="Episode 4 · 3:38"),
+                    meta="Episode 4 · 3:39"),
     scenes=[
         dict(
             id="hook", image="assets/img/32_debt_chain.png", motion="zoom_in",

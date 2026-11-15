@@ -12,8 +12,8 @@ need channel access; the baked end-screen canvas by itself is not clickable.
 | 1 | पहले खुद को दो | 3:56 · `out/deep-explains-babylon-niyam-1.mp4` | `out/short-1.mp4` | `out/deep-explains-babylon-niyam-1.hi.srt` | `out/thumbnail-{A,B,C}-1280x720.jpg` |
 | 2 | ख़र्चे काबू में | 3:38.44 · `out/deep-explains-babylon-niyam-2.mp4` | `out/short-2.mp4` | `out/deep-explains-babylon-niyam-2.hi.srt` | `out/thumbnail-niyam2-{A,B,C}-1280x720.jpg` |
 | 3 | पैसा पैसा कमाए | 3:40.88 · `out/deep-explains-babylon-niyam-3.mp4` | `out/short-3.mp4` | `out/deep-explains-babylon-niyam-3.hi.srt` | `out/thumbnail-niyam3-{A,B,C}-1280x720.jpg` |
-| 4 | पैसा बचाओ, खो मत दो | 3:38 · `out/deep-explains-babylon-niyam-4.mp4` | `out/short-4.mp4` | `out/deep-explains-babylon-niyam-4.hi.srt` | `out/thumbnail-niyam4-{A,B,C}-1280x720.jpg` |
-| 5 | कर्ज़ से आज़ादी (दबासीर) | 3:59.96 · `out/deep-explains-babylon-niyam-5.mp4` | `out/short-5.mp4` | `out/deep-explains-babylon-niyam-5.hi.srt` | `out/thumbnail-niyam5-{A,B,C}-1280x720.jpg` |
+| 4 | पैसा बचाओ, खो मत दो | 3:38.84 · `out/deep-explains-babylon-niyam-4.mp4` | `out/short-4.mp4` | `out/deep-explains-babylon-niyam-4.hi.srt` | `out/thumbnail-niyam4-{A,B,C}-1280x720.jpg` |
+| 5 | कर्ज़ से आज़ादी (दबासीर) | 3:59.88 · `out/deep-explains-babylon-niyam-5.mp4` | `out/short-5.mp4` | `out/deep-explains-babylon-niyam-5.hi.srt` | `out/thumbnail-niyam5-{A,B,C}-1280x720.jpg` |
 | 6 | घर: ख़र्च या निवेश? | 3:46.40 · `out/deep-explains-babylon-niyam-6.mp4` | `out/short-6.mp4` · 29.3s | `out/deep-explains-babylon-niyam-6.hi.srt` · 65 cues | `out/thumbnail-niyam6-{A,B,C}-1280x720.jpg` |
 | 7 | बुढ़ापे की कमाई | 3:55.88 · `out/deep-explains-babylon-niyam-7.mp4` | `out/short-7.mp4` · 26.5s | `out/deep-explains-babylon-niyam-7.hi.srt` · 74 cues | `out/thumbnail-niyam7-{A,B,C}-1280x720.jpg` |
 | 8 | खुद को बड़ा बनाओ | 3:43.40 · `out/deep-explains-babylon-niyam-8.mp4` | `out/short-8.mp4` · 26.3s | `out/deep-explains-babylon-niyam-8.hi.srt` · 69 cues | `out/thumbnail-niyam8-{A,B,C}-1280x720.jpg` |
@@ -41,6 +41,8 @@ Shorts: 1080×1920/30 fps with the same palette and original narrations.
   (title, description, tags, pinned comment, captions and exact end-screen timer).
 - `content/07-end-screen.md` — nine exact Studio start times, visual positions and honest interactive setup.
 - `out/release-readiness.md` — generated nine-episode local media audit and the actions still requiring a channel owner.
+- `out/upload-media.sha256` — integrity manifest for the 54 MP4/SRT/JPG upload assets; metadata sheets are excluded because real links change after upload.
+- `content/23-asset-provenance.md` and `assets/fonts/README.md` — rights handoff, bundled OFL notices, and unresolved voice/image permission checks.
 - `content/03-series-plan.md`, `content/04-channel-strategy.md` — rollout, measurement,
   and monetisation/policy safeguards.
 
@@ -56,6 +58,8 @@ python3 -m venv .venv && . .venv/bin/activate
 python3 -m pip install -r requirements.txt
 python3 -m unittest discover -s tests -v
 python3 scripts/check_release.py  # verifies all nine local video/Short/SRT/thumbnail/upload packs
+python3 scripts/make_release_manifest.py --check  # verify 54 frozen upload-media SHA-256 hashes
+# After approved media edits: recheck content/media, run --write once, then --check.
 
 # Episode 5 — other episodes use episode02.py ... episode04.py
 python3 scripts/build_video.py --episode video/episode05.py --stills
@@ -119,7 +123,7 @@ Sources and disclaimers are in `content/14-episode5-publish-pack.md`.
 2. ख़र्चे काबू में ✅ · ₹6,500/माह = ₹78,000/साल **खर्च का उदाहरण**, न कि बचत का वादा · 70% का असमर्थित दावा और गलत research attribution हटाए · 3:38.44 + 19.2s Short
 3. पैसा पैसा कमाए ✅
 4. पैसा बचाओ, खो मत दो ✅
-5. कर्ज़ से आज़ादी (दबासीर) ✅ · 3:59.96 · Short 25.6s · 40-cue SRT · 3 thumbnails
+5. कर्ज़ से आज़ादी (दबासीर) ✅ · 3:59.88 · Short 25.6s · 40-cue SRT · 3 thumbnails
 6. घर: ख़र्च या निवेश? ✅ · 3:46.40 · Short 29.3s · 65-cue SRT · 3 thumbnails
 7. बुढ़ापे की कमाई ✅ · 3:55.88 · Short 26.5s · 74-cue SRT · 3 thumbnails
 8. ख़ुद को बड़ा बनाओ ✅ · 3:43.40 · Short 26.3s · 69-cue SRT · 3 thumbnails

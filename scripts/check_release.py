@@ -199,15 +199,16 @@ def report(rows: list[dict], issues: list[str]) -> str:
         lines.append('\n## Local defects (fix before upload)\n\n')
         lines.extend(f'- [ ] {issue}\n' for issue in issues)
     lines.append(f'\n## Still requires channel owner / YouTube Studio\n\n'
-                 f'- [ ] Confirm intended commercial use/licences for narration, generated art, fonts and audio; review videos and upload metadata personally.\n'
+                 f'- [ ] Review media and intended-use rights personally: font notices are in `assets/fonts/`, while voice/image provenance and channel clearance still need owner confirmation. See `content/23-asset-provenance.md`.\n'
                  f'- [ ] Create the **The Richest Man in Babylon — Hindi** playlist and upload each full video in order (or schedule after review); set title/description/tags, language and appropriate audience settings from `out/upload-N.md`.\n'
+                 f'- [ ] Before transfer, run `python3 scripts/make_release_manifest.py --check` to confirm all 54 media files match the frozen handoff; re-run after copying, since SHA-256 cannot verify publication.\n'
                  f'- [ ] Upload each video’s `.hi.srt` in Hindi, choose one of its three JPG thumbnails and inspect the processed public/private preview.\n'
                  f'- [ ] Add actual Studio **video + subscribe end-screen elements** on the 12-second baked canvas, not just the artwork. Follow `content/07-end-screen.md`; link episodes only once published.\n'
                  f'- [ ] Upload each `out/short-N.mp4` separately. Its title, safety notes, description and long-video link guidance are in the same upload sheet.\n'
                  f'- [ ] After each upload, put the real video/playlist IDs in local ignored `links.json` (template: `links.example.json`), then run `python3 scripts/publish.py --all` to replace fallback links before pasting metadata.\n'
                  f'- [ ] Confirm visibility, pinned comments, playlist order, working links and clickable end screens in **Studio**; no script can attest to those without channel access.\n\n'
                  f'Known video IDs in local config: **{known}/9** (presence alone does not prove publication).\n'
-                 f'\nRecheck locally: `python3 scripts/check_release.py` and `python3 -m unittest discover -s tests -q`.\n')
+                 f'\nRecheck locally: `python3 scripts/check_release.py`, `python3 scripts/make_release_manifest.py --check` and `python3 -m unittest discover -s tests -q`.\n')
     return ''.join(lines)
 
 
