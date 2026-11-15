@@ -149,8 +149,10 @@ def link_block(n: int) -> str:
     return render_block(n, load_links(), Opt())
 
 
-def generate(n: int) -> None:
-    ep = episode(n)
+def generate(n: int, script_only: bool = False) -> None:
+    # A script can be prepared before TTS; publication metadata must wait for
+    # finished audio, a real MP4 and a real Short so its chapter times are true.
+    ep = None if script_only else episode(n)
     words = sum(len(NARRATIONS[n][sid].split()) for sid in IDS)
     assert 550 <= words <= 650, (n, words)
     assert all('?' in t and len(t) < 60 for t in TITLES[n])
@@ -175,6 +177,9 @@ def generate(n: int) -> None:
         + sections + '\n\n---\n\n### Sources और ₹ गणित\n\n' + source_lines +
         '\n\n' + maths + '\n\nयह शैक्षिक उदाहरण है, व्यक्तिगत निवेश/बीमा/कर्ज़/घर खरीदने की सलाह नहीं। कोई विशिष्ट स्टॉक, फ़ंड, उत्पाद या स्कीम नहीं सुझाई गई।\n',
         encoding='utf-8')
+    if script_only:
+        print(f'wrote script only: {script_path.relative_to(ROOT)} ({words} words)')
+        return
 
     mp4_rel = f'out/deep-explains-babylon-niyam-{n}.mp4'
     mp4_len = probe_dur(str(ROOT / mp4_rel))
@@ -254,4 +259,7 @@ def generate(n: int) -> None:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('episode', type=int, choices=range(6, 10))
-    generate(parser.parse_args().episode)
+    parser.add_argument('--script-only', action='store_true',
+                        help='write the six-part script before narration; no publish pack')
+    args = parser.parse_args()
+    generate(args.episode, args.script_only)

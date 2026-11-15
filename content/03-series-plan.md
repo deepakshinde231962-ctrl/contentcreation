@@ -1,4 +1,4 @@
-# 8-9 Video Series Plan — The Richest Man in Babylon (Hindi)
+# 9-Video Series Plan — The Richest Man in Babylon (Hindi)
 
 Channel positioning: **"Har hafte ek kitab, aasaan Hindi me — aaj ke India ke examples ke saath."**
 Fixed template = ek jaise thumbnail + same voice + same structure. Isse YouTube ko series samajhne
@@ -7,20 +7,20 @@ me aasaani hoti hai aur returning viewers bante hain.
 Har episode ka structure (fixed):
 `Hook → Niyam → Evidence → India example → Kahan fail hota hai → 2026 version → Takeaway + next teaser`
 
-| # | Episode | Core idea | Hook (10s) | India example | Shorts |
-|---|---|---|---|---|---|
-| 1 | **पहले खुद को दो** (published/ready) | Kamai ka 10% pehle | "Salary aayi aur teesre hafte khaali" | ₹40,000 salary → ₹4,000 auto-debit | 1 (ready, `out/short-1.mp4`) |
-| 2 | **खर्चे काबू में** | Needs vs wants, "90% me jiyo" | "70% kharche 'zaroori' lagte hain, par hain nahi" | Kirana + subscriptions audit | 1 |
-| 3 | **पैसा पैसा कमाए** | Compounding | "₹500 mehine se kya hoga?" | 20 saal ka SIP math (no product) | 2 |
-| 4 | **पैसा बचाओ, kho mat do** | Guard from loss | "Guaranteed 3% monthly" = scam | Cyber-fraud + F&O data (SEBI) | 2 |
-| 5 | **कर्ज़ से आज़ादी (Dabasir)** | Debt payoff | "Credit card ka minimum due" | ₹50,000 card balance math | 2 |
-| 6 | **घर: खर्च या निवेश?** | Rent vs buy | "EMI 30 saal ka, ghar 20 saal ka" | Pune/Mumbai rent vs EMI | 1 |
-| 7 | **बुढ़ापे की कमाई** | Retirement | "60 ke baad kaun dega?" | EPF/NPS/term insurance basics | 1 |
-| 8 | **खुद को बड़ा बनाओ** | Skill = highest ROI | "₹2,000 course vs ₹2,000 phone case" | Freelance/skill upgrade | 2 |
-| 9 | **Five Laws of Gold (finale)** | Recap + 5 laws | "5 niyam jo 4,000 saal purane hain" | Full checklist | 2 |
+| # | Episode | What the actual episode covers | Indian illustration | Repo status |
+|---|---|---|---|---|
+| 1 | **पहले खुद को दो** | पहले बचत; सीमा और सुधार | ₹40,000 की काल्पनिक कमाई | Video + Short ready |
+| 2 | **ख़र्चे काबू में** | ज़रूरत बनाम आदत | सब्सक्रिप्शन/खर्च का audit | Video + Short ready |
+| 3 | **पैसा पैसा कमाए** | समय, compounding और जोखिम | काल्पनिक monthly savings | Video + Short ready |
+| 4 | **पैसा बचाओ, खो मत दो** | नुकसान और धोखे से बचना | स्रोत दिए गए उदाहरण | Video + Short ready |
+| 5 | **कर्ज़ से आज़ादी (दबासीर)** | कर्ज़ पर किताब का 10/20/70 तरीका और आज की सीमाएँ | ₹60,000 कार्ड बकाया, 3.5%/माह सिर्फ़ अनुमान | Video + Short ready |
+| 6 | **घर: ख़र्च या निवेश?** | किताब का पाँचवाँ इलाज; किराया बनाम खरीद की *पूरी* लागत | ₹50 लाख घर, ₹40 लाख लोन, 8.5%/20 वर्ष, ₹18,000 किराया — सभी अनुमान | Video + 29.3s Short ready |
+| 7 | **बुढ़ापे की कमाई** | किताब का छठा इलाज; भविष्य का खर्च और निर्भर परिवार | ₹30,000/माह का खर्च, 25 साल, 6% अनुमानित महँगाई | Video + 26.5s Short ready |
+| 8 | **खुद को बड़ा बनाओ** | किताब का सातवाँ इलाज; कौशल ≠ पक्की कमाई | ₹2,000 कोर्स + 40 घंटे, काम मिलने/न मिलने के दो परिणाम | Video + 26.3s Short ready |
+| 9 | **Five Laws of Gold (finale)** | सात इलाज से *अलग* पाँच नियम; 1926 की काल्पनिक कहानी, ऐतिहासिक प्रमाण नहीं | ₹30,000/माह की मान ली गई आय, 10% = ₹3,000, बिना रिटर्न | 572-word script + first four scenes voiced; final video pending |
 
-**Publishing rhythm:** hafte me 1 long (3:30–5:00) + 2 Shorts, same day/times.
-Shorts ko long video se hi cut karo (retention data compare hoga).
+**Rollout idea:** हर long video के साथ उसी narration से निकला एक Short है।
+YouTube publication/playlist/interactive end-screen setup को channel access के बिना पूरा हुआ नहीं मानें।
 
 **Playlist:** "The Richest Man in Babylon — Hindi" (episode order me). Playlist description same template.
 
@@ -28,14 +28,13 @@ Shorts ko long video se hi cut karo (retention data compare hoga).
 
 ## Growth actions (jo aap aaj kar sakte ho)
 
-1. **Pehle 30 din: sirf 1 book.** In 9 episodes me channel ki identity ban jayegi; beech me doosri books na lo.
-2. **Har video ke end me next episode ka teaser** — series binge hoti hai.
-3. **Pinned comment me ek sawaal** — comments early reach ke liye sabse sasta signal.
-4. **Thumbnail A/B:** 2 variants rakho (same photo, text badlo) — YouTube "Test & Compare" use karo.
-5. **Community post** har Shorts ke baad: ek line ka poll ("10% ya 20%?").
-6. **Analytics dekho 48 ghante baad:** CTR <4% → thumbnail/title badlo; retention 30s par <60% → hook badlo.
-7. **Monetisation safety:** book ki lines copy nahi, sirf ideas; images AI-generated (license-safe);
-   music self-generated (`assets/music/bed.mp3`) → koi copyright claim nahi.
+1. **Series ek jagah rakho.** Nine-episode playlist banaane ka plan tabhi poora hai jab video upload ho; repo-ready file ko published na kahen.
+2. **Har long video ke end me next episode ka teaser** rakho; clickable card Studio se *alag* jodna hota hai.
+3. **Pinned comment me ek sachcha sawaal** rakho; kisi se account number ya private details na mangna.
+4. **Thumbnail options:** teen alag, isi series template ke JPG bane hain; Studio me A/B test sirf channel access ho to.
+5. **Community post** mein hypothetical ₹ maths aur assumptions saath dena; guaranteed return ya viral claim nahi.
+6. **Analytics:** upload ke baad apne channel ka CTR aur retention *apne* baseline se compare karo; 4%/60% universal benchmarks nahi hain.
+7. **Rights aur accuracy:** किताब के संवाद/उद्धरण कॉपी नहीं; generated visuals और locally synthesised bed के इस्तेमाल की शर्तें बनाए रखें; copyright claim न आने की गारंटी कोई नहीं दे सकता।
 
 ---
 
@@ -52,7 +51,7 @@ Shorts ko long video se hi cut karo (retention data compare hoga).
 | `anil-matcha/open-generative-ai` | open image/video model generation | AI stills (`assets/img/01…08`) |
 
 > Yani: un repos ke **ideas** yahan ek chhote, dependency-free pipeline me implement hue hain jo
-> **laptop par offline** chalta hai (ffmpeg + PIL), kisi paid API ke bina.
+> **rendering** ffmpeg + Pillow se locally chalti hai; nayi AI voice aur visuals ke liye alag generation service chahiye.
 
 
 ---
